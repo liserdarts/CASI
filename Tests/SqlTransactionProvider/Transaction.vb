@@ -31,7 +31,7 @@ Public MustInherit Class Base
     End Sub
     
     Protected Overridable Sub GetConnection()
-        Connection = Data.SqlDatabase.GetConnection("")
+        Connection = GetOverride(Of Overriders.SqlDatabaseOverride).GetConnection
     End Sub
 
     Protected MustOverride Sub EndTransaction()

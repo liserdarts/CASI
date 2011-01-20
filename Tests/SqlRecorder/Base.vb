@@ -20,7 +20,7 @@ Public Class Base
     End Sub
     
     Protected Overridable Sub GetConnection()
-        Connection = Data.SqlDatabase.GetConnection("")
+        Connection = GetOverride(Of Overriders.SqlDatabaseOverride).GetConnection
     End Sub
 
 End Class

@@ -68,8 +68,6 @@
   <ItemGroup>
     <Compile Include="Data\FileManager.vb" />
     <Compile Include="Data\Files.vb" />
-    <Compile Include="Data\SqlDatabase.vb" />
-    <Compile Include="Data\SqlDatabaseManager.vb" />
     <Compile Include="Executor.vb" />
     <Compile Include="Finder.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
