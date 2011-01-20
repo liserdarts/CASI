@@ -1,13 +1,10 @@
 ﻿Namespace Overriders
 Public Class SqlDatabaseOverride
     Inherits TestFramework.Override
-    Implements Data.SqlDatabase.ISqlDatabase
 
     Protected Overrides Sub StartOverrideInternal()
-        Data.SqlDatabase.Manager = Me
     End Sub
     Protected Overrides Sub StopOverrideInternal()
-        Data.SqlDatabase.Manager = Nothing
     End Sub
     
     Protected Overrides Sub EnterTransactionInternal()
@@ -23,13 +20,13 @@ Public Class SqlDatabaseOverride
     End Sub
 
     Dim Connections As New Dictionary(Of String, SqlServerCe.SqlCeConnection)
-    Public Function GetConnection(ConnectionString As String) As Common.DbConnection Implements Data.SqlDatabase.ISqlDatabase.GetConnection
+    Public Function GetConnection() As Common.DbConnection
         Dim Path = IO.Path.GetTempFileName
         If IO.File.Exists(Path) Then
             IO.File.Delete(Path)
         End If
 
-        ConnectionString = String.Format("Max Database Size = 4000; Data Source = {0}", Path)
+        Dim ConnectionString = String.Format("Max Database Size = 4000; Data Source = {0}", Path)
             
         Dim Engine As New SqlServerCe.SqlCeEngine(ConnectionString)
         Engine.CreateDatabase
