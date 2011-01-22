@@ -5,13 +5,14 @@
 'http://scripthelper.codeplex.com/license
 
 Namespace Sql
-Public Class SqlExecutor
+Public Class MSSqlExecutor
     Inherits Executor
 
     <ScriptPropertyAttribute("e5eecd6f-3481-41ae-bea8-46c96ce1ea5b")> _
-    Public Property Connection() As SqlConnection
+    Public Property Connection() As MSSqlConnection
 
     Public Overrides Sub RunScript(Script As IO.Stream)
+        'ToDo: Allow GOs in the script
         Using Cmd = Connection.Connection.CreateCommand
             Dim Reader As New IO.StreamReader(Script)
             Cmd.CommandText = Reader.ReadToEnd

@@ -8,7 +8,7 @@ Namespace SqlRecorder
 Public Class Base
     Inherits TestFramework.TestCase
 
-    Protected Connection As Common.DbConnection
+    Protected Connection As TestSqlConnection
     
     Public Overrides Sub Test()
         GetConnection
@@ -27,6 +27,7 @@ Public Class Base
     
     Protected Overridable Sub GetConnection()
         Connection = GetOverride(Of Overriders.SqlDatabaseOverride).GetConnection
+        Connection.Init
     End Sub
 
 End Class

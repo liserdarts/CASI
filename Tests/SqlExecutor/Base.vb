@@ -8,19 +8,18 @@ Namespace SqlExecutor
 Public Class Base
     Inherits TestFramework.TestCase
     
-    Protected Connection As Common.DbConnection
+    Protected Connection As TestSqlConnection
     Protected Executor As Sql.SqlExecutor
 
     Public Overrides Sub Test()
         GetConnection
 
         Executor = New Sql.SqlExecutor
-        Executor.Transaction = New Sql.SqlTransactionProvider
-        Executor.Transaction.Connection = Connection
+        Executor.Connection = Connection
         
         Executor.RunScript("Create Table NewTable (Col1 Int)")
 
-        Using Cmd = Connection.CreateCommand
+        Using Cmd = Connection.Connection.CreateCommand
             Cmd.CommandText = "Select * From NewTable"
             Cmd.ExecuteScalar
         End Using
@@ -28,6 +27,7 @@ Public Class Base
     
     Protected Overridable Sub GetConnection()
         Connection = GetOverride(Of Overriders.SqlDatabaseOverride).GetConnection
+        Connection.Init
     End Sub
 End Class
 End Namespace

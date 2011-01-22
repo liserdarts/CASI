@@ -8,7 +8,7 @@ Namespace SqlTransactionProvider
 Public MustInherit Class Base
     Inherits TestFramework.TestCase
 
-    Protected Connection As Common.DbConnection
+    Protected Connection As TestSqlConnection
     Protected Transaction As Sql.SqlTransactionProvider
     Protected Executor As Sql.SqlExecutor
 
@@ -17,8 +17,8 @@ Public MustInherit Class Base
         
         Transaction = New Sql.SqlTransactionProvider
         Executor = New Sql.SqlExecutor
-        Executor.Transaction = Transaction
-        Executor.Transaction.Connection = Connection
+        Transaction.Connection = Connection
+        Executor.Connection = Connection
         
         Executor.RunScript("Create Table NewTable (Col1 Int)")
 
@@ -28,7 +28,7 @@ Public MustInherit Class Base
         EndTransaction
         
         Dim Count As Integer
-        Using Cmd = Connection.CreateCommand
+        Using Cmd = Connection.Connection.CreateCommand
             Cmd.CommandText = "Select Count(*) From NewTable"
             Count = Cmd.ExecuteScalar
         End Using
@@ -38,6 +38,7 @@ Public MustInherit Class Base
     
     Protected Overridable Sub GetConnection()
         Connection = GetOverride(Of Overriders.SqlDatabaseOverride).GetConnection
+        Connection.Init
     End Sub
 
     Protected MustOverride Sub EndTransaction()

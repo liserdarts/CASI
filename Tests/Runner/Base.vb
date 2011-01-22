@@ -5,14 +5,14 @@
 'http://scripthelper.codeplex.com/license
 
 Namespace Runner
-Public MustInherit Class Base
+Public Class Base
     Inherits TestFramework.TestCase
 
-    Protected WithEvents Runner As New ScriptRunner
-    Protected WithEvents Finder As New TestFinder
-    Protected WithEvents Transaction As New TestTransactionProvider
-    Protected WithEvents Executor As New TestExecutor
-    Protected WithEvents Recorder As New TestRecoder
+    Protected WithEvents Runner As ScriptRunner
+    Protected WithEvents Finder As TestFinder
+    Protected WithEvents Transaction As TestTransactionProvider
+    Protected WithEvents Executor As TestExecutor
+    Protected WithEvents Recorder As TestRecoder
     
     Public Overrides Sub Test()
         CreateRunner

@@ -77,6 +77,8 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SqlRunner.vb" />
+    <Compile Include="TestSqlConnection.vb" />
     <Compile Include="Overriders\FileOverride.vb" />
     <Compile Include="Overriders\SqlDatabaseOverride.vb" />
     <Compile Include="ResourceFinder\Base.vb" />
@@ -113,6 +115,7 @@
     <Compile Include="TestFinder.vb" />
     <Compile Include="TestRecoder.vb" />
     <Compile Include="Runner\Transaction.vb" />
+    <Compile Include="TestSqlExecutor.vb" />
     <Compile Include="TestTransactionProvider.vb" />
   </ItemGroup>
   <ItemGroup>

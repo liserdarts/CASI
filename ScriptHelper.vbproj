@@ -66,6 +66,8 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ScriptProperty.vb" />
+    <Compile Include="ScriptPropertyCreator.vb" />
     <Compile Include="Data\FileManager.vb" />
     <Compile Include="Data\Files.vb" />
     <Compile Include="Executor.vb" />
@@ -88,6 +90,9 @@
     <Compile Include="Recorder.vb" />
     <Compile Include="ResourceFinder.vb" />
     <Compile Include="ScriptRunner.vb" />
+    <Compile Include="Sql\MsSqlConnection.vb" />
+    <Compile Include="Sql\SqlConnection.vb" />
+    <Compile Include="Sql\MSSqlExecutor.vb" />
     <Compile Include="Sql\SqlExecutor.vb" />
     <Compile Include="Sql\SqlFinder.vb" />
     <Compile Include="Sql\SqlRecorder.vb" />
