@@ -8,12 +8,13 @@ Namespace Sql
 Public Class SqlRecorder
     Inherits Recorder
 
-    Public Property Connection() As Common.DbConnection
+    <ScriptPropertyAttribute("e5eecd6f-3481-41ae-bea8-46c96ce1ea5b")> _
+    Public Property Connection() As SqlConnection
     Public Property TableName() As String = "ScriptUpdates"
 
     Public Overrides Function HasRunScript(Path As String) As Boolean
         CreateTable
-        Using Cmd = Connection.CreateCommand
+        Using Cmd = Connection.Connection.CreateCommand
             Cmd.CommandText = String.Format("Select * From [{0}] Where ScriptPath = @Path", TableName)
             
             Dim PathParam = Cmd.CreateParameter
@@ -28,7 +29,7 @@ Public Class SqlRecorder
     End Function
 
     Public Overrides Sub RecordScript(Path As String)
-        Using Cmd = Connection.CreateCommand
+        Using Cmd = Connection.Connection.CreateCommand
             Cmd.CommandText = _
                 "Insert Into [{0}] " &
                 "(ScriptPath, InstallDate) " &
@@ -54,7 +55,7 @@ Public Class SqlRecorder
         Static CreatedTable As Boolean
         If CreatedTable Then Return
         
-        Using Cmd = Connection.CreateCommand
+        Using Cmd = Connection.Connection.CreateCommand
             Cmd.CommandText = String.Format("Select * from INFORMATION_SCHEMA.TABLES Where TABLE_NAME = '{0}'", TableName)
             Using Reader = Cmd.ExecuteReader
                 If Reader.Read Then 'The table already exists
@@ -64,7 +65,7 @@ Public Class SqlRecorder
             End Using
         End Using
 
-        Using Cmd = Connection.CreateCommand
+        Using Cmd = Connection.Connection.CreateCommand
             Cmd.CommandText = _
                 "Create Table [{0}] " &
                 "(ID BigInt Identity (1, 1) Not Null, " &

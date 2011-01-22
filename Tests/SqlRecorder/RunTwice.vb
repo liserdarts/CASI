@@ -20,6 +20,7 @@ Public Class RunTwice
     Protected Overrides Sub GetConnection()
         If Connection IsNot Nothing Then Return
         Connection = GetOverride(Of Overriders.SqlDatabaseOverride).GetConnection
+        Connection.Init
     End Sub
 
 End Class

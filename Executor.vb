@@ -5,6 +5,7 @@
 'http://scripthelper.codeplex.com/license
 
 Public MustInherit Class Executor
+
     Public Sub RunScript(Script As String)
         Dim Stream As New IO.MemoryStream(Text.Encoding.UTF8.GetBytes(Script))    
         RunScript(Stream)

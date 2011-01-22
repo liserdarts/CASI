@@ -10,8 +10,26 @@ Public Class ScriptRunner
     Public Recorder As Recorder
     Public Transaction As TransactionProvider
     Public Executor As Executor
+    
+    Dim Properties As IList(Of ScriptProperty)
+    Public Function GetPropertyObjects() As IList(Of ScriptProperty)
+        If Properties Is Nothing Then
+            Dim Objects As New List(Of Object)
+            Objects.Add(Finder)
+            Objects.Add(Recorder)
+            Objects.Add(Transaction)
+            Objects.Add(Executor)
+
+            Properties = (New ScriptPropertyCreator).GetProperties(Objects)
+        End If
+        Return Properties
+    End Function
 
     Public Sub Run()
+        For Each Prop In GetPropertyObjects
+            Prop.Init
+        Next
+
         Dim Scripts = Finder.GetAllScripts
         Dim NewScripts As New List(Of String)
 
