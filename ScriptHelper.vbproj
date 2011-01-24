@@ -66,6 +66,8 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileFinder.vb" />
+    <Compile Include="Folder.vb" />
     <Compile Include="ScriptProperty.vb" />
     <Compile Include="ScriptPropertyCreator.vb" />
     <Compile Include="Data\FileManager.vb" />
@@ -94,7 +96,6 @@
     <Compile Include="Sql\SqlConnection.vb" />
     <Compile Include="Sql\MSSqlExecutor.vb" />
     <Compile Include="Sql\SqlExecutor.vb" />
-    <Compile Include="Sql\SqlFinder.vb" />
     <Compile Include="Sql\SqlRecorder.vb" />
     <Compile Include="Sql\SqlTransactionProvider.vb" />
     <Compile Include="TransactionProvider.vb" />
