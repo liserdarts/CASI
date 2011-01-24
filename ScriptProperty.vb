@@ -21,6 +21,13 @@ Public Class ScriptPropertyAttribute
 End Class
 
 Public MustInherit Class ScriptProperty
+    
+    Public ReadOnly Property PropertyName() As String
+        Get
+            Return Me.GetType.Name
+        End Get
+    End Property
+
     ''' <summary>
     ''' When overridden in a derived class prepares the object for use
     ''' </summary>
