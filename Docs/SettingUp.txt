@@ -17,7 +17,7 @@ SqlRecorder
 	The SqlRecorder records what scripts have been run using a table in an SQL database. If the table does not exist it will be created. The name of the table can be changed with the TableName property.
 
 Including Script Files
-	There is more then one way to include script files. Each has its own advantages and disadvantages. The more straight forward way is to include all the script files alongside the exe and other assemblies. This is simple to do and can make debugging easy if there is a problem with any of the scripts. An alternative method is what's used by this sample project. Instead the scripts are included as resources of the ScriptHelper.Sample.exe. This makes debugging more difficult because you can't easily read the scripts and you can't change them without compiling again. However it allows the scripts to be more portable.
+	There is more then one way to include script files. Each has its own advantages and disadvantages. The more straight forward way is to include all the script files alongside the exe and other assemblies. This is simple to do and can make debugging easy if there is a problem with any of the scripts. An alternative method is what's used by the sample project. Instead the scripts are included as resources of the ScriptHelper.Sample.exe. This makes debugging more difficult because you can't easily read the scripts and you can't change them without compiling again. However it allows the scripts to be more portable. If you use this method it might be a good idea to include an option to save the scripts to a folder for debugging.
 
 	Scripts As A Resource
 		Script files in the ScriptHelper.Sample project are compiled as a resource into the exe. This removes the need to copy all the script files with the exe were ever you want to run it. For example if the scripts were part of a unit test project, whatever test framework you are using will probably not copy the script files for you and as a result your code will not be able to find them. Additionally any other project that wants to reference your assembly will not have to worry about copying the scripts because they will already be included. This makes it easy to create a database anywhere at anytime. Software can easily create it's own database the first time it's run for example.
@@ -31,4 +31,4 @@ Including Script Files
 			  </ItemGroup>
 			</Target>
 
-			This can be added to any project. It will make sure that every file included as content in the project will be added as a resource to the exe or dll. Files that are not part of the project but are included in the project's folder or a sub folder will not be included.
+			This can be added to any project. It will make sure that every file included as content in the project will be added as a resource to the exe or dll. Files that are not part of the project but are in the project's folder or a sub folder will not be included.
