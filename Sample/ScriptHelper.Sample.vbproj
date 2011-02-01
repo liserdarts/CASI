@@ -133,7 +133,6 @@
     <AppDesigner Include="My Project\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ReadMe.txt" />
     <Content Include="Scripts\Script1.sql" />
     <Content Include="Scripts\Script2.sql" />
   </ItemGroup>

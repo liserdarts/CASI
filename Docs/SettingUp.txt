@@ -1,5 +1,5 @@
 ﻿Setting up a script runner
-	A script runner is the core of the process. It needs 4 replaceable pieces that do the actual work. The script runner is responsible for putting them together. The 4 pieces are a Finder, a Recorder, a TransactionProvider, and a Executor.
+	A script runner is the core of the process. It needs 4 replaceable parts that do the actual work. The script runner is responsible for putting them together. The 4 pieces are a Finder, a Recorder, a TransactionProvider, and a Executor.
 
 	Finder
 		The Finder is responsible for returning a list of all the scripts that are available to run. It should return the list in the order the scripts are meant to be run. Later the finder will be responsible for opening the scripts and return a Stream.
@@ -13,8 +13,21 @@
 	Executor
 		The executor is responsible for actually running the scripts
 
-SqlRecorder
-	The SqlRecorder records what scripts have been run using a table in an SQL database. If the table does not exist it will be created. The name of the table can be changed with the TableName property.
+Examples
+	FileFinder
+		The ScriptHelper.FileFinder class will recursively search a given base path. The FilePattern can be changed to find different files.
+
+	ResourceFinder
+		The ScriptHelper.ResourceFinder class will look through the resources of a given assembly. The FilePattern can be changed to find different files.
+
+	SqlRecorder
+		The ScriptHelper.Sql.SqlRecorder class records what scripts have been run using a table in an SQL database. If the table does not exist it will be created. The name of the table can be changed with the TableName property.
+
+	SqlTransactionProvider
+		The ScriptHelper.Sql.SqlTransactionProvider class uses a database transaction to commit or rollback changes made by the scripts.
+
+	SqlExecutor
+		The ScriptHelper.Sql.SqlExecutor class executes the scripts with a given System.Data.Common.DbConnection.
 
 Including Script Files
 	There is more then one way to include script files. Each has its own advantages and disadvantages. The more straight forward way is to include all the script files alongside the exe and other assemblies. This is simple to do and can make debugging easy if there is a problem with any of the scripts. An alternative method is what's used by the sample project. Instead the scripts are included as resources of the ScriptHelper.Sample.exe. This makes debugging more difficult because you can't easily read the scripts and you can't change them without compiling again. However it allows the scripts to be more portable. If you use this method it might be a good idea to include an option to save the scripts to a folder for debugging.
