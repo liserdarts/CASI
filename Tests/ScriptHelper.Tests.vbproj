@@ -61,9 +61,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="TestFramework, Version=1.0.4028.31826, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>\\beta\builds\TestFramework\Builds\LatestBuild\TestFramework.dll</HintPath>
+    <Reference Include="TestFramework">
+      <HintPath>\\beta\builds\TestFramework\Builds\Release\TestFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
