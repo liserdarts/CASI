@@ -7,22 +7,28 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <ScrollViewer Grid.Row="0">
-            <ListBox x:Name="UxPropertyObjects">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock FontWeight="Bold" Text="{Binding PropertyName}" />
-                            <pe:PropertyEditor x:Name="UxProperties" SelectedObject="{Binding}" ShowReadOnlyProperties="False" ShowTabs="False" Width="400" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <Grid>
+                <ListBox x:Name="UxPropertyObjects">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold" Text="{Binding PropertyName}" />
+                                <pe:PropertyEditor x:Name="UxProperties" SelectedObject="{Binding}" ShowReadOnlyProperties="False" ShowTabs="False" Width="400" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
         </ScrollViewer>
         
-
         <Button x:Name="UXRun" Grid.Row="1" HorizontalAlignment="Right">Run</Button>
+        <StackPanel x:Name="UxResults"  Grid.Row="2" Visibility="Collapsed">
+            <ProgressBar x:Name="UxProgress" Height="20" IsIndeterminate="True" />
+            <TextBox x:Name="UxLog" MaxHeight="400" MaxWidth="400" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto" />
+        </StackPanel>
     </Grid>
 </Window>
