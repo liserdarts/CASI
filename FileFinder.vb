@@ -20,12 +20,33 @@ Public Class FileFinder
                 Paths(I) = Paths(I).Substring(BasePath.Folder.Length)
             Next
         End If
-
+        
+        Paths.Sort(New Sorter)
+        
         Return Paths
     End Function
 
     Public Overrides Function Open(Path As String) As IO.Stream
         Return Data.Files.OpenFile(BasePath.Folder & Path, IO.FileMode.Open)
     End Function
+
+    Private Class Sorter
+        Implements IComparer(Of String)
+        
+        Public Function Compare(X As String, Y As String) As Integer Implements IComparer(Of String).Compare
+            Dim XAray = X.Split("\"c, "/"c)
+            Dim YAray = Y.Split("\"c, "/"c)
+            
+            For I As Integer = 0 To Math.Min(XAray.Length, YAray.Length) - 1
+                Dim Diff = XAray(I).CompareTo(YAray(I))
+                If Diff <> 0 Then
+                    Return Diff
+                End If
+            Next
+
+            Return XAray.Length.CompareTo(YAray.Length)
+        End Function
+
+    End Class
 
 End Class
