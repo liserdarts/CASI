@@ -10,7 +10,7 @@ Class MainWindow
     Dim Recorder As New Sql.SqlRecorder
     Dim Executor As New Sql.MSSqlExecutor
     Dim Transaction As New Sql.SqlTransactionProvider
-    Dim Runner As New ScriptRunner
+    Dim WithEvents Runner As New ScriptRunner
     
     Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
         Finder.Assembly = Me.GetType.Assembly
@@ -53,6 +53,46 @@ Class MainWindow
     Private Sub Finish()
         UxProgress.Visibility = Windows.Visibility.Collapsed
     End Sub
+    Private Sub Runner_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles Runner.ProgressChanged
+        If Not Dispatcher.CheckAccess Then
+            Dispatcher.BeginInvoke(New EventHandler(Of ProgressChangedEventArgs)(AddressOf Runner_ProgressChanged), sender, e)
+            Return
+        End If
+
+        Static LastStageText As String
+        Dim StageText As String
+
+        Select Case e.Stage
+        Case ProgressChangedEventArgs.ProgressStages.Initialize
+            StageText = "Initializing"
+            UxProgress.IsIndeterminate = False
+        Case ProgressChangedEventArgs.ProgressStages.GetScripts
+            StageText = "Getting Scripts"
+            UxProgress.IsIndeterminate = True
+        Case ProgressChangedEventArgs.ProgressStages.FilterScripts
+            StageText = "Filtering Scripts"
+            UxProgress.IsIndeterminate = False
+        Case ProgressChangedEventArgs.ProgressStages.BeginTransaction
+            StageText = "Beginning Transaction"
+            UxProgress.IsIndeterminate = True
+        Case ProgressChangedEventArgs.ProgressStages.RunScripts
+            StageText = "Running Scripts"
+            UxProgress.IsIndeterminate = False
+        Case ProgressChangedEventArgs.ProgressStages.CommitTransaction
+            StageText = "Committing Transaction"
+            UxProgress.IsIndeterminate = True
+        Case ProgressChangedEventArgs.ProgressStages.RecordScripts
+            StageText = "Recording Scripts"
+            UxProgress.IsIndeterminate = False
+        End Select
+
+        If LastStageText <> StageText Then
+            Console.WriteLine(StageText)
+            LastStageText = StageText
+        End If
+        
+        UxProgress.Value = e.Progress * 100
+    End Sub
 
     Private Function FindChildren(Of T As DependencyObject)(Parent As FrameworkElement) As List(Of T)
         Dim Children As New List(Of T)
@@ -70,5 +110,4 @@ Class MainWindow
         
         Return Children
     End Function
-
 End Class
