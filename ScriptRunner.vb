@@ -8,6 +8,7 @@ Public Class ScriptRunner
     
     Public Finder As Finder
     Public Recorder As Recorder
+    Public Sorter As Sorter = New FolderSorter
     Public Transaction As TransactionProvider
     Public Executor As Executor
     
@@ -39,6 +40,8 @@ Public Class ScriptRunner
                 NewScripts.Add(Script)
             End If
         Next
+
+        NewScripts = Sorter.Sort(NewScripts)
 
         Transaction.BeginTransaction
 

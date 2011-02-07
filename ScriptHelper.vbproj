@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="FileFinder.vb" />
     <Compile Include="Folder.vb" />
+    <Compile Include="FolderSorter.vb" />
     <Compile Include="ScriptProperty.vb" />
     <Compile Include="ScriptPropertyCreator.vb" />
     <Compile Include="Data\FileManager.vb" />
@@ -92,6 +93,7 @@
     <Compile Include="Recorder.vb" />
     <Compile Include="ResourceFinder.vb" />
     <Compile Include="ScriptRunner.vb" />
+    <Compile Include="Sorter.vb" />
     <Compile Include="Sql\MsSqlConnection.vb" />
     <Compile Include="Sql\SqlConnection.vb" />
     <Compile Include="Sql\MSSqlExecutor.vb" />
