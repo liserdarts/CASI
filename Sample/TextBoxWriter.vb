@@ -18,6 +18,7 @@
             Return
         End If
         Txt.AppendText(Value)
+        Txt.ScrollToEnd
     End Sub
 
 End Class
