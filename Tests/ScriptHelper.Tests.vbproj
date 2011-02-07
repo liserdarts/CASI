@@ -79,6 +79,7 @@
     <Compile Include="FileFinder\Base.vb" />
     <Compile Include="FileFinder\OnlySqlFiles.vb" />
     <Compile Include="FileFinder\RelativePath.vb" />
+    <Compile Include="FileFinder\SortFoldersFirst.vb" />
     <Compile Include="SqlRunner.vb" />
     <Compile Include="TestSqlConnection.vb" />
     <Compile Include="Overriders\FileOverride.vb" />
