@@ -10,7 +10,7 @@ Suggestions
 	Always write scripts right away and check in with code changes that need it. If you check in code changes without the required scripts it may break the development environment of others on your team. Be courteous.
 	Create a new folder each month for new scripts. If you put scripts into 1 folder it will get to be quite big. Because you can never move scripts they will be stuck there forever. I recommend using the format [Year][Month]. For example January 2011 would be 201101. This will make them sort correctly and be easy to search.
 	Each developer should have there own database. This makes it a lot easier to keep off each others toes.
-	Create a new database for every branch of code that you work on. The goal here is to treat your database just like code.
+	Create a new database for every branch of code that you work on (If you make any database changes in that branch). The goal here is to treat your database just like code.
 
 Some questions and objections you might have
 	Won't it take a long time to run all those scripts?

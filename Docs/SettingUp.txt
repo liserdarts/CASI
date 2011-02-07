@@ -1,11 +1,14 @@
 ﻿Setting up a script runner
-	A script runner is the core of the process. It needs 4 replaceable parts that do the actual work. The script runner is responsible for putting them together. The 4 pieces are a Finder, a Recorder, a TransactionProvider, and a Executor.
+	A script runner is the core of the process. It needs 5 replaceable parts that do the actual work. The script runner is responsible for putting them together. The 5 pieces are a Finder, a Recorder, a sorter, a TransactionProvider, and a Executor.
 
 	Finder
-		The Finder is responsible for returning a list of all the scripts that are available to run. It should return the list in the order the scripts are meant to be run. Later the finder will be responsible for opening the scripts and return a Stream.
+		The Finder is responsible for returning a list of all the scripts that are available to run. Later the finder will be responsible for opening the scripts and return a Stream.
 
 	Recorder
 		The Recorder is responsible for looking up if a script has been run before, based on its path. Later when the scripts are actually run it will be responsible for recording that.
+
+	Sorter
+		Sorts the scripts into the order they are meant to run. Usually this is just alphabetically.
 
 	TransactionProvider
 		The TransactionProvider is responsible for making sure all the scripts are executed in some form of a transaction. There are different strategies for accomplishing this but in the end it must be able to commit and rollback the transaction.
@@ -19,6 +22,14 @@ Examples
 
 	ResourceFinder
 		The ScriptHelper.ResourceFinder class will look through the resources of a given assembly. The FilePattern can be changed to find different files.
+
+	FolderSorter
+		The ScriptHelper.FolderSorter class sorts that paths alphabetically by comparing each folder in the paths separately. This class is used by the ScriptHelper.ScriptRunner class by default.
+
+		Consider this list of scripts
+			1.2\Somthing.sql
+			1.2.1\Something.sql
+		A straight alphabical sort would put everything in the 1.2.1 folder before the 1.2 folder because "." comes before "\". This is probably not what was intended. The ScriptHelper.FolderSorter class splits on the backslash (or forward slash) and will compare just "1.2" to "1.2.1". It will determine "1.2" should be before "1.2.1" and not even look at the rest of the path. If the folders did match it would continue comparing the rest of the path in the same way.
 
 	SqlRecorder
 		The ScriptHelper.Sql.SqlRecorder class records what scripts have been run using a table in an SQL database. If the table does not exist it will be created. The name of the table can be changed with the TableName property.
