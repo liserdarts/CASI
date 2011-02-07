@@ -56,7 +56,6 @@ Public Class ScriptRunner
             Transaction.CommitTransaction
         Catch Ex As Exception
             Transaction.RollbackTransaction
-            Console.WriteLine(Ex.ToString)
             Throw
         End Try
 

@@ -40,8 +40,13 @@ Class MainWindow
 
     Private Sub Run()
         Console.SetOut(New TextBoxWriter(UxLog))
-        Runner.Run
-        Console.WriteLine("Done")
+        Try
+            Runner.Run
+            Console.WriteLine("Done")
+        Catch Ex As Exception
+            Console.WriteLine(Ex.ToString)
+            Console.WriteLine("Failed")
+        End Try
 
         Dispatcher.Invoke(New Action(AddressOf Finish))
     End Sub
