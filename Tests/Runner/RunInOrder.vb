@@ -5,21 +5,32 @@
 'http://scripthelper.codeplex.com/license
 
 Namespace Runner
+''' <summary>
+''' Scripts should always run in the order the sorter sorts them
+''' </summary>
 Public Class RunInOrder
-    Inherits BAse
-
-    'Scripts should always run in the order the finder returns them
+    Inherits Base
 
     Public Overrides Sub Test()
         MyBase.Test
 
         AssertGreater(Executor.RunLog.Count, 1)
 
+        Dim Sorted = (Runner.Sorter.Sort(Finder.Scripts))
         Dim LastIndex As Integer
         For Each Script In Executor.RunLog
-            AssertGreater(Finder.Scripts.IndexOf(Script), LastIndex - 1)
-            LastIndex = Finder.Scripts.IndexOf(Script)
+            If Executor.RunLog.Contains(Script) Then
+                AssertGreater(Executor.RunLog.IndexOf(Script), LastIndex - 1)
+                LastIndex = Sorted.IndexOf(Script)
+            End If
         Next
+    End Sub
+
+    
+    Protected Overrides Sub CreateRunner()
+        MyBase.CreateRunner
+        
+        Finder.Scripts.Reverse
     End Sub
 
 End Class
