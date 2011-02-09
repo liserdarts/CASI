@@ -84,6 +84,9 @@ Class MainWindow
         Case ProgressChangedEventArgs.ProgressStages.RecordScripts
             StageText = "Recording Scripts"
             UxProgress.IsIndeterminate = False
+        Case Else
+            StageText = e.Stage.ToString
+            UxProgress.IsIndeterminate = True
         End Select
 
         If LastStageText <> StageText Then
