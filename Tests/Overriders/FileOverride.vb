@@ -2,7 +2,7 @@
 'Licensed under the Microsoft Public License (Ms-PL)
 'you may not use this file except in compliance with the License.
 'You may obtain a copy of the license at 
-'http://scripthelper.codeplex.com/license
+'http://casi.codeplex.com/license
 
 Namespace Overriders
 Public Class FileOverride
@@ -25,7 +25,7 @@ Public Class FileOverride
         Resources.Add("SampleScript2.sql")
         
         For Each Resource In Resources
-            Using File = Reflection.Assembly.GetExecutingAssembly.GetManifestResourceStream("ScriptHelper.Tests." & Resource)
+            Using File = Reflection.Assembly.GetExecutingAssembly.GetManifestResourceStream("CASI.Tests." & Resource)
                 Using NewStream As New ReusableStream
                     Dim Buffer(256) As Byte
                     Dim Length As Integer

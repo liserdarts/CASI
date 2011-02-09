@@ -7,10 +7,10 @@
     </ProductVersion>
     <SchemaVersion>
     </SchemaVersion>
-    <ProjectGuid>{CEC03019-1222-4516-8E9E-770EDEA1ED30}</ProjectGuid>
+    <ProjectGuid>{E18A4236-5BFC-4033-A62C-BBADF7BBDD8E}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>ScriptHelper.Tests</RootNamespace>
-    <AssemblyName>ScriptHelper.Tests</AssemblyName>
+    <RootNamespace>CASI</RootNamespace>
+    <AssemblyName>CASI</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -21,7 +21,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>ScriptHelper.Tests.xml</DocumentationFile>
+    <DocumentationFile>CASI.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42032,42036</NoWarn>
     <WarningsAsErrors>42020,42021,42022</WarningsAsErrors>
   </PropertyGroup>
@@ -31,7 +31,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>ScriptHelper.Tests.xml</DocumentationFile>
+    <DocumentationFile>CASI.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42032,42036</NoWarn>
     <WarningsAsErrors>42020,42021,42022</WarningsAsErrors>
   </PropertyGroup>
@@ -50,20 +50,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dependencies\System.Data.SqlServerCe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="TestFramework">
-      <HintPath>\\beta\builds\TestFramework\Builds\Release\TestFramework.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -76,19 +66,16 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileFinder\Base.vb" />
-    <Compile Include="FileFinder\OnlySqlFiles.vb" />
-    <Compile Include="FileFinder\RelativePath.vb" />
-    <Compile Include="FolderSorter\Base.vb" />
-    <Compile Include="SqlRunner.vb" />
-    <Compile Include="TestSqlConnection.vb" />
-    <Compile Include="Overriders\FileOverride.vb" />
-    <Compile Include="Overriders\SqlDatabaseOverride.vb" />
-    <Compile Include="ResourceFinder\Base.vb" />
-    <Compile Include="ResourceFinder\Filter.vb" />
-    <Compile Include="Runner\Base.vb" />
-    <Compile Include="Runner\ExecutionException.vb" />
-    <Compile Include="Runner\OnlyRunOnce.vb" />
+    <Compile Include="FileFinder.vb" />
+    <Compile Include="Folder.vb" />
+    <Compile Include="FolderSorter.vb" />
+    <Compile Include="ProgressChangedEventArgs.vb" />
+    <Compile Include="ScriptProperty.vb" />
+    <Compile Include="ScriptPropertyCreator.vb" />
+    <Compile Include="Data\FileManager.vb" />
+    <Compile Include="Data\Files.vb" />
+    <Compile Include="Executor.vb" />
+    <Compile Include="Finder.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -104,19 +91,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Runner\RunInOrder.vb" />
-    <Compile Include="SqlExecutor\Base.vb" />
-    <Compile Include="SqlRecorder\Base.vb" />
-    <Compile Include="SqlRecorder\RunTwice.vb" />
-    <Compile Include="SqlTransactionProvider\CommitTransaction.vb" />
-    <Compile Include="SqlTransactionProvider\RollbackTransaction.vb" />
-    <Compile Include="SqlTransactionProvider\Transaction.vb" />
-    <Compile Include="TestExecutor.vb" />
-    <Compile Include="TestFinder.vb" />
-    <Compile Include="TestRecoder.vb" />
-    <Compile Include="Runner\Transaction.vb" />
-    <Compile Include="TestSqlExecutor.vb" />
-    <Compile Include="TestTransactionProvider.vb" />
+    <Compile Include="Recorder.vb" />
+    <Compile Include="ResourceFinder.vb" />
+    <Compile Include="ScriptRunner.vb" />
+    <Compile Include="Sorter.vb" />
+    <Compile Include="Sql\MsSqlConnection.vb" />
+    <Compile Include="Sql\SqlConnection.vb" />
+    <Compile Include="Sql\MSSqlExecutor.vb" />
+    <Compile Include="Sql\SqlExecutor.vb" />
+    <Compile Include="Sql\SqlRecorder.vb" />
+    <Compile Include="Sql\SqlTransactionProvider.vb" />
+    <Compile Include="TransactionProvider.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -138,26 +123,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ScriptHelper.vbproj">
-      <Project>{E18A4236-5BFC-4033-A62C-BBADF7BBDD8E}</Project>
-      <Name>ScriptHelper</Name>
-    </ProjectReference>
+    <Content Include="ReadMe.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Overriders\Files\SampleNotes.txt" />
-    <EmbeddedResource Include="Overriders\Files\SampleScript1.sql" />
-    <EmbeddedResource Include="Overriders\Files\SampleScript2.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Overriders\Resources\SampleScript2.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Overriders\Resources\SampleScript1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Overriders\Resources\SampleNotes.txt" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

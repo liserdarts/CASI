@@ -11,11 +11,11 @@ Imports System.Windows
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("ScriptHelper.Sample")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Microsoft")> 
-<Assembly: AssemblyProduct("ScriptHelper.Sample")> 
-<Assembly: AssemblyCopyright("Copyright @ Microsoft 2011")> 
+<Assembly: AssemblyTitle("CASI.Sample")> 
+<Assembly: AssemblyDescription("CASI Sample project")> 
+<Assembly: AssemblyCompany("Liserd Arts")> 
+<Assembly: AssemblyProduct("CASI.Sample")> 
+<Assembly: AssemblyCopyright("Copyright © Liserd Arts 2011")> 
 <Assembly: AssemblyTrademark("")> 
 <Assembly: ComVisible(false)>
 

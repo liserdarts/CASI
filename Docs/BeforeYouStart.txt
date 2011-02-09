@@ -1,5 +1,5 @@
 ﻿Development guidelines
-If you're going to be using Script Helper there are a few things things you should consider and be aware of. This should be something your entire team is involved with and agrees to. It will require cooperation from everybody.
+If you're going to be using CASI there are a few things things you should consider and be aware of. This should be something your entire team is involved with and agrees to. It will require cooperation from everybody.
 Rules
 	Never change a script once it is in source control
 		Once a script is in source control anybody can get it and run it. That script will never be run on any of those databases again. If you change it, those changes will not make it to those databases. If you need to undo a change in a script, write another script to do it (as long as this doesn't cause some data loss of course). There are exceptions to this rule, and as long as you understand the potential for problems you should be able to recognize them when you find them. So I shouldn't have to list them all here. But here are some examples.
@@ -15,8 +15,8 @@ Suggestions
 Some questions and objections you might have
 	Won't it take a long time to run all those scripts?
 		I don't know your database, but the answer is probably no. First of all if you're upgrading a database only the new scripts will be run, but even creating a new database and running every script will likely be much faster then you think. I work on a project that has 4 years of scripts built up and a new database can be created in a few seconds.
-	Script helper doesn't fit my situation
-		I've purposely made Script Helper very flexible. More flexible then this text gives it credit for. If there's something missing that you need, contact me and I'll see what I can do. I want to make sure Script Helper works for everybody.
+	CASI doesn't fit my situation
+		I've purposely made CASI very flexible. More flexible then this text gives it credit for. If there's something missing that you need, contact me and I'll see what I can do. I want to make sure CASI works for everybody.
 	I want to be able to rename and move scripts
 		Sorry. Seriously though, if you really need this contact me.
 	I don't want to write all those scripts

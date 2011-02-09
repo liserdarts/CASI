@@ -6,8 +6,8 @@
     <ProjectGuid>{078FBA2F-3140-4653-81E1-9216BEBEEB60}</ProjectGuid>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ScriptHelper.Sample</RootNamespace>
-    <AssemblyName>ScriptHelper.Sample</AssemblyName>
+    <RootNamespace>CASI.Sample</RootNamespace>
+    <AssemblyName>CASI.Sample</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <MyType>Custom</MyType>
@@ -29,7 +29,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>ScriptHelper.Sample.xml</DocumentationFile>
+    <DocumentationFile>CASI.Sample.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42032,42036</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,7 +40,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>ScriptHelper.Sample.xml</DocumentationFile>
+    <DocumentationFile>CASI.Sample.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <NoWarn>41999,42016,42017,42018,42019,42032,42036</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -138,9 +138,9 @@
     <Content Include="Scripts\Script2.sql" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ScriptHelper.vbproj">
+    <ProjectReference Include="..\CASI.vbproj">
       <Project>{E18A4236-5BFC-4033-A62C-BBADF7BBDD8E}</Project>
-      <Name>ScriptHelper</Name>
+      <Name>CASI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

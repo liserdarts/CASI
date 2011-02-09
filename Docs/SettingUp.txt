@@ -18,33 +18,33 @@
 
 Examples
 	FileFinder
-		The ScriptHelper.FileFinder class will recursively search a given base path. The FilePattern can be changed to find different files.
+		The CASI.FileFinder class will recursively search a given base path. The FilePattern can be changed to find different files.
 
 	ResourceFinder
-		The ScriptHelper.ResourceFinder class will look through the resources of a given assembly. The FilePattern can be changed to find different files.
+		The CASI.ResourceFinder class will look through the resources of a given assembly. The FilePattern can be changed to find different files.
 
 	FolderSorter
-		The ScriptHelper.FolderSorter class sorts that paths alphabetically by comparing each folder in the paths separately. This class is used by the ScriptHelper.ScriptRunner class by default.
+		The CASI.FolderSorter class sorts that paths alphabetically by comparing each folder in the paths separately. This class is used by the CASI.ScriptRunner class by default.
 
 		Consider this list of scripts
 			1.2\Somthing.sql
 			1.2.1\Something.sql
-		A straight alphabical sort would put everything in the 1.2.1 folder before the 1.2 folder because "." comes before "\". This is probably not what was intended. The ScriptHelper.FolderSorter class splits on the backslash (or forward slash) and will compare just "1.2" to "1.2.1". It will determine "1.2" should be before "1.2.1" and not even look at the rest of the path. If the folders did match it would continue comparing the rest of the path in the same way.
+		A straight alphabical sort would put everything in the 1.2.1 folder before the 1.2 folder because "." comes before "\". This is probably not what was intended. The CASI.FolderSorter class splits on the backslash (or forward slash) and will compare just "1.2" to "1.2.1". It will determine "1.2" should be before "1.2.1" and not even look at the rest of the path. If the folders did match it would continue comparing the rest of the path in the same way.
 
 	SqlRecorder
-		The ScriptHelper.Sql.SqlRecorder class records what scripts have been run using a table in an SQL database. If the table does not exist it will be created. The name of the table can be changed with the TableName property.
+		The CASI.Sql.SqlRecorder class records what scripts have been run using a table in an SQL database. If the table does not exist it will be created. The name of the table can be changed with the TableName property.
 
 	SqlTransactionProvider
-		The ScriptHelper.Sql.SqlTransactionProvider class uses a database transaction to commit or rollback changes made by the scripts.
+		The CASI.Sql.SqlTransactionProvider class uses a database transaction to commit or rollback changes made by the scripts.
 
 	SqlExecutor
-		The ScriptHelper.Sql.SqlExecutor class executes the scripts with a given System.Data.Common.DbConnection.
+		The CASI.Sql.SqlExecutor class executes the scripts with a given System.Data.Common.DbConnection.
 
 Including Script Files
-	There is more then one way to include script files. Each has its own advantages and disadvantages. The more straight forward way is to include all the script files alongside the exe and other assemblies. This is simple to do and can make debugging easy if there is a problem with any of the scripts. An alternative method is what's used by the sample project. Instead the scripts are included as resources of the ScriptHelper.Sample.exe. This makes debugging more difficult because you can't easily read the scripts and you can't change them without compiling again. However it allows the scripts to be more portable. If you use this method it might be a good idea to include an option to save the scripts to a folder for debugging.
+	There is more then one way to include script files. Each has its own advantages and disadvantages. The more straight forward way is to include all the script files alongside the exe and other assemblies. This is simple to do and can make debugging easy if there is a problem with any of the scripts. An alternative method is what's used by the sample project. Instead the scripts are included as resources of the CASI.Sample.exe. This makes debugging more difficult because you can't easily read the scripts and you can't change them without compiling again. However it allows the scripts to be more portable. If you use this method it might be a good idea to include an option to save the scripts to a folder for debugging.
 
 	Scripts As A Resource
-		Script files in the ScriptHelper.Sample project are compiled as a resource into the exe. This removes the need to copy all the script files with the exe were ever you want to run it. For example if the scripts were part of a unit test project, whatever test framework you are using will probably not copy the script files for you and as a result your code will not be able to find them. Additionally any other project that wants to reference your assembly will not have to worry about copying the scripts because they will already be included. This makes it easy to create a database anywhere at anytime. Software can easily create it's own database the first time it's run for example.
+		Script files in the CASI.Sample project are compiled as a resource into the exe. This removes the need to copy all the script files with the exe were ever you want to run it. For example if the scripts were part of a unit test project, whatever test framework you are using will probably not copy the script files for you and as a result your code will not be able to find them. Additionally any other project that wants to reference your assembly will not have to worry about copying the scripts because they will already be included. This makes it easy to create a database anywhere at anytime. Software can easily create it's own database the first time it's run for example.
 
 		How It Works
 			Normally to add a file as a resource you have to change its build action using the properties. This would work but is not necessary because of a custom action in the project file.

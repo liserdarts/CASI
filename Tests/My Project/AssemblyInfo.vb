@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("ScriptHelper.Tests")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyTitle("CASI.Tests")> 
+<Assembly: AssemblyDescription("CASI automated tests")> 
 <Assembly: AssemblyCompany("Liserd Arts")> 
-<Assembly: AssemblyProduct("ScriptHelper.Tests")> 
+<Assembly: AssemblyProduct("CASI.Tests")> 
 <Assembly: AssemblyCopyright("Copyright © Liserd Arts 2011")> 
 <Assembly: AssemblyTrademark("")> 
 

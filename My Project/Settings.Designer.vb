@@ -64,9 +64,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.ScriptHelper.My.MySettings
+        Friend ReadOnly Property Settings() As Global.CASI.My.MySettings
             Get
-                Return Global.ScriptHelper.My.MySettings.Default
+                Return Global.CASI.My.MySettings.Default
             End Get
         End Property
     End Module

@@ -2,7 +2,7 @@
 'Licensed under the Microsoft Public License (Ms-PL)
 'you may not use this file except in compliance with the License.
 'You may obtain a copy of the license at 
-'http://scripthelper.codeplex.com/license
+'http://casi.codeplex.com/license
 
 Namespace SqlRecorder
 Public Class Base
