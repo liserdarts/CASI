@@ -2,7 +2,7 @@
 'Licensed under the Microsoft Public License (Ms-PL)
 'you may not use this file except in compliance with the License.
 'You may obtain a copy of the license at 
-'http://scripthelper.codeplex.com/license
+'http://casi.codeplex.com/license
 
 Public Class SqlRunner
     Inherits TestFramework.TestCase
@@ -10,7 +10,7 @@ Public Class SqlRunner
     'ToDo: Create a TestSqlExecutor that uses a SQL server CE database
 
     Protected WithEvents Runner As ScriptRunner
-    Protected WithEvents Finder As ScriptHelper.FileFinder
+    Protected WithEvents Finder As CASI.FileFinder
     Protected WithEvents Transaction As Sql.SqlTransactionProvider
     Protected WithEvents Executor As Executor
     Protected WithEvents Recorder As Sql.SqlRecorder
@@ -24,7 +24,7 @@ Public Class SqlRunner
     Protected Overridable Sub CreateRunner()
         Runner = New ScriptRunner
         
-        Finder = New ScriptHelper.FileFinder
+        Finder = New CASI.FileFinder
         Transaction = New Sql.SqlTransactionProvider
         Executor = New TestSqlExecutor
         Recorder = New Sql.SqlRecorder

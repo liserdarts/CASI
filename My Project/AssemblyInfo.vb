@@ -10,11 +10,11 @@ Imports System.Resources
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("ScriptHelper")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyTitle("CASI")> 
+<Assembly: AssemblyDescription("Continuous Automated Script Integrator")> 
 <Assembly: AssemblyCompany("Liserd Arts")> 
-<Assembly: AssemblyProduct("ScriptHelper")> 
-<Assembly: AssemblyCopyright("Copyright @ Liserd Arts 2011")> 
+<Assembly: AssemblyProduct("CASI")> 
+<Assembly: AssemblyCopyright("Copyright © Liserd Arts 2011")> 
 <Assembly: AssemblyTrademark("")> 
 <Assembly: ComVisible(false)>
 

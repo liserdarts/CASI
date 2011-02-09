@@ -2,13 +2,13 @@
 'Licensed under the Microsoft Public License (Ms-PL)
 'you may not use this file except in compliance with the License.
 'You may obtain a copy of the license at 
-'http://scripthelper.codeplex.com/license
+'http://casi.codeplex.com/license
 
 Namespace ResourceFinder
 Public Class Base
     Inherits TestFramework.TestCase
     
-    Protected Finder As ScriptHelper.ResourceFinder
+    Protected Finder As CASI.ResourceFinder
 
     Public Overrides Sub Test()
         CreateFinder
@@ -28,7 +28,7 @@ Public Class Base
     End Sub
 
     Protected Overridable Sub CreateFinder()
-        Finder = New ScriptHelper.ResourceFinder
+        Finder = New CASI.ResourceFinder
         Finder.Assembly = Me.GetType.Assembly
     End Sub
 
