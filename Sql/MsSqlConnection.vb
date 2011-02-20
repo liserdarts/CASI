@@ -38,9 +38,8 @@ Public Class MSSqlConnection
         Dim ConnectionString As New SqlClient.SqlConnectionStringBuilder
         ConnectionString.Add("uid", UserName)
         ConnectionString.Add("pwd", Password)
-        ConnectionString.Add("timeout", "3600000")
-        ConnectionString.Add("data source", DatabaseName)
-        ConnectionString.Add("initial catalog", Server)
+        ConnectionString.Add("data source", Server)
+        ConnectionString.Add("initial catalog", DatabaseName)
         
         Dim Connection As New SqlClient.SqlConnection(ConnectionString.ToString)
         Connection.Open
