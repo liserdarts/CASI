@@ -23,7 +23,6 @@ Public Class ResourceFinder
             End If
         Next
 
-        Paths.Sort
         Return Paths
     End Function
 
