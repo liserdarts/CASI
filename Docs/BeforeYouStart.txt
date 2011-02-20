@@ -14,7 +14,7 @@ Suggestions
 
 Some questions and objections you might have
 	Won't it take a long time to run all those scripts?
-		I don't know your database, but the answer is probably no. First of all if you're upgrading a database only the new scripts will be run, but even creating a new database and running every script will likely be much faster then you think. I work on a project that has 4 years of scripts built up and a new database can be created in a few seconds.
+		I don't know your database, but the answer is probably no. First of all if you're upgrading a database only the new scripts will be run, but even creating a new database and running every script will likely be much faster then you think. I work on a project that has 395 scripts working on 63 tables built up and a new database can be created in a few seconds. It took 4 years to get that many scripts.
 	CASI doesn't fit my situation
 		I've purposely made CASI very flexible. More flexible then this text gives it credit for. If there's something missing that you need, contact me and I'll see what I can do. I want to make sure CASI works for everybody.
 	I want to be able to rename and move scripts
