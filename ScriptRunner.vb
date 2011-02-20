@@ -56,6 +56,7 @@ Public Class ScriptRunner
         Dim Properties = GetPropertyObjects
         For I As Integer = 0 To Properties.Count - 1
             OnProgressChanged(ProgressChangedEventArgs.ProgressStages.Initialize, I / Properties.Count)
+            Console.WriteLine("Initializing " & Properties(I).GetType.FullName)
             Properties(I).Init
         Next
     End Sub
