@@ -4,12 +4,24 @@
 'You may obtain a copy of the license at 
 'http://casi.codeplex.com/license
 
+''' <summary>
+''' Base class to execute scripts.
+''' </summary>
 Public MustInherit Class Executor
 
+    ''' <summary>
+    ''' Executes the given script.
+    ''' </summary>
+    ''' <param name="Script">The script</param>
+    ''' <remarks>Converts the String into an <c>System.IO.MemoryStream</c> using UTF8 encoding</remarks>
     Public Sub RunScript(Script As String)
-        Dim Stream As New IO.MemoryStream(Text.Encoding.UTF8.GetBytes(Script))    
+        Dim Stream As New IO.MemoryStream(Text.Encoding.UTF8.GetBytes(Script))
         RunScript(Stream)
     End Sub
 
+    ''' <summary>
+    ''' When overridden in a derived class, executes the given script.
+    ''' </summary>
+    ''' <param name="Script">The script</param>
     Public MustOverride Sub RunScript(Script As IO.Stream)
 End Class

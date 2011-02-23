@@ -5,13 +5,35 @@
 'http://casi.codeplex.com/license
 
 Namespace Sql
+''' <summary>
+''' Provides a connection of an Microsoft SQL database
+''' </summary>
+''' <remarks>
+''' If the database doesn't exist it will be created
+''' </remarks>
 Public Class MSSqlConnection
     Inherits SqlConnection
     
+    ''' <summary>
+    ''' Gets or sets the server name.
+    ''' </summary>
+    ''' <value>The server name.</value>
     Public Property Server As String
+    ''' <summary>
+    ''' Gets or sets the database name.
+    ''' </summary>
+    ''' <value>The database name.</value>
     Public Property Database As String
     
+    ''' <summary>
+    ''' Gets or sets the username to connection with.
+    ''' </summary>
+    ''' <value>The username.</value>
     Public Property UserName As String
+    ''' <summary>
+    ''' Gets or sets the password.
+    ''' </summary>
+    ''' <value>The password.</value>
     Public Property Password As String
     
     Public Overrides Sub Init()

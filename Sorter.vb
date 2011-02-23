@@ -9,6 +9,11 @@
 ''' </summary>
 Public MustInherit Class Sorter
     
+    ''' <summary>
+    ''' When overridden in a derived class, sorts the paths
+    ''' </summary>
+    ''' <param name="Paths">The paths to sort</param>
+    ''' <returns>The sorted paths</returns>
     Public MustOverride Function Sort(Paths As IList(Of String)) As IList(Of String)
 
 End Class

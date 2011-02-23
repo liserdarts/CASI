@@ -5,13 +5,40 @@
 'http://casi.codeplex.com/license
 
 Namespace Sql
+''' <summary>
+''' Records the scripts in an SQL database
+''' </summary>
+''' <remarks>
+''' The table where the scripts are recorded is create with this
+''' Create Table [{0}]
+'''	(ID BigInt Identity (1, 1) Not Null,
+'''	ScriptPath national character varying(255) Not Null,
+''' InstallDate DateTime Not Null)
+''' </remarks>
 Public Class SqlRecorder
     Inherits Recorder
-
+    
+    ''' <summary>
+    ''' Gets or sets the connection.
+    ''' </summary>
+    ''' <value>The connection to the database.</value>
     <ScriptPropertyAttribute("e5eecd6f-3481-41ae-bea8-46c96ce1ea5b")> _
     Public Property Connection() As SqlConnection
+
+    ''' <summary>
+    ''' Gets or sets the name of the table to record the scripts in.
+    ''' </summary>
+    ''' <value>The name of the table.</value>
+    ''' <remarks>If the table doesn't exist it will be created</remarks>
     Public Property TableName() As String = "ScriptUpdates"
 
+    ''' <summary>
+    ''' Determines whether [has run script] [the specified path].
+    ''' </summary>
+    ''' <param name="Path">The path to the script.</param>
+    ''' <returns>
+    ''' <c>True</c> if the script has been run; otherwise, <c>False</c>.
+    ''' </returns>
     Public Overrides Function HasRunScript(Path As String) As Boolean
         CreateTable
         Using Cmd = Connection.Connection.CreateCommand
@@ -28,6 +55,10 @@ Public Class SqlRecorder
         End Using
     End Function
 
+    ''' <summary>
+    ''' Records the script as having run.
+    ''' </summary>
+    ''' <param name="Path">The path to the script.</param>
     Public Overrides Sub RecordScript(Path As String)
         Using Cmd = Connection.Connection.CreateCommand
             Cmd.CommandText = _

@@ -5,17 +5,22 @@
 'http://casi.codeplex.com/license
 
 Namespace Sql
+''' <summary>
+''' The base class for all SQL connections
+''' </summary>
 Public MustInherit Class SqlConnection
     Inherits ScriptProperty
     
     ''' <summary>
-    ''' The connection to the sql database
+    ''' Gets or sets the connection to the SQL database.
     ''' </summary>
+    ''' <value>The connection to the SQL database.</value>
     Public Property Connection As Common.DbConnection
 
     ''' <summary>
-    ''' The transaction the connection is currently in, if any
+    ''' Gets or sets the transaction the connection is currently in, if any.
     ''' </summary>
+    ''' <value>The transaction the connection is currently in.</value>
     Public Property Transaction As Common.DbTransaction
     
 End Class
