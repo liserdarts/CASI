@@ -11,12 +11,12 @@ Public MustInherit Class SqlConnection
     ''' <summary>
     ''' The connection to the sql database
     ''' </summary>
-    Public Connection As Common.DbConnection
+    Public Property Connection As Common.DbConnection
 
     ''' <summary>
     ''' The transaction the connection is currently in, if any
     ''' </summary>
-    Public Transaction As Common.DbTransaction
+    Public Property Transaction As Common.DbTransaction
     
 End Class
 End Namespace
