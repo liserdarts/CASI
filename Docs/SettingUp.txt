@@ -29,7 +29,7 @@ Examples
 		Consider this list of scripts
 			1.2\Somthing.sql
 			1.2.1\Something.sql
-		A straight alphabical sort would put everything in the 1.2.1 folder before the 1.2 folder because "." comes before "\". This is probably not what was intended. The CASI.FolderSorter class splits on the backslash (or forward slash) and will compare just "1.2" to "1.2.1". It will determine "1.2" should be before "1.2.1" and not even look at the rest of the path. If the folders did match it would continue comparing the rest of the path in the same way.
+		A straight alphabetical sort would put everything in the 1.2.1 folder before the 1.2 folder because "." comes before "\". This is probably not what was intended. The CASI.FolderSorter class splits on the backslash (or forward slash) and will compare just "1.2" to "1.2.1". It will determine "1.2" should be before "1.2.1" and not even look at the rest of the path. If the folders did match it would continue comparing the rest of the path in the same way.
 
 	SqlRecorder
 		The CASI.Sql.SqlRecorder class records what scripts have been run using a table in an SQL database. If the table does not exist it will be created. The name of the table can be changed with the TableName property.
