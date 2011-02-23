@@ -6,18 +6,25 @@
 
 Public Class ScriptRunner
     
-    Public Finder As Finder
-    Public Recorder As Recorder
-    Public Sorter As Sorter = New FolderSorter
-    Public Transaction As TransactionProvider
-    Public Executor As Executor
+    Public Property Finder As Finder
+    Public Property Recorder As Recorder
+    Public Property Sorter As Sorter = New FolderSorter
+    Public Property Transaction As TransactionProvider
+    Public Property Executor As Executor
 
+    ''' <summary>
+    ''' Occurs when the progress of running the scripts has changed.
+    ''' </summary>
     Event ProgressChanged As EventHandler(Of ProgressChangedEventArgs)
     Protected Overridable Sub OnProgressChanged(Stage As ProgressChangedEventArgs.ProgressStages, Progress As Double)
         RaiseEvent ProgressChanged(Me, New ProgressChangedEventArgs(Stage, Progress))
     End Sub
     
     Dim Properties As IList(Of ScriptProperty)
+    ''' <summary>
+    ''' Gets all the <c>ScriptProperty</c> objects used for configuration.
+    ''' </summary>
+    ''' <returns>If the objects have not been created, the will be. Multiple calls will return the same objects.</returns>
     Public Function GetPropertyObjects() As IList(Of ScriptProperty)
         If Properties Is Nothing Then
             Dim Objects As New List(Of Object)
@@ -31,6 +38,9 @@ Public Class ScriptRunner
         Return Properties
     End Function
 
+    ''' <summary>
+    ''' Runs the whole process of finding, running and recording all the scripts.
+    ''' </summary>
     Public Sub Run()
         Initialize
 
@@ -50,7 +60,10 @@ Public Class ScriptRunner
         RecordScripts(Paths)
     End Sub
 
-    Public Sub Initialize()
+    ''' <summary>
+    ''' Initializes every <c>ScriptProperty</c> object.
+    ''' </summary>
+    Private Sub Initialize()
         OnProgressChanged(ProgressChangedEventArgs.ProgressStages.Initialize, 0)
 
         Dim Properties = GetPropertyObjects

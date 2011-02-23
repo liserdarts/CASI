@@ -5,12 +5,23 @@
 'http://casi.codeplex.com/license
 
 Namespace Sql
+''' <summary>
+''' Executes scripts on an Microsoft SQL database
+''' </summary>
 Public Class MSSqlExecutor
     Inherits Executor
 
+    ''' <summary>
+    ''' Gets or sets the connection.
+    ''' </summary>
+    ''' <value>The connection to the database.</value>
     <ScriptPropertyAttribute("e5eecd6f-3481-41ae-bea8-46c96ce1ea5b")> _
     Public Property Connection() As MSSqlConnection
 
+    ''' <summary>
+    ''' Executes the given script.
+    ''' </summary>
+    ''' <param name="Script">The script</param>
     Public Overrides Sub RunScript(Script As IO.Stream)
         'ToDo: Allow GOs in the script
         Using Cmd = Connection.Connection.CreateCommand
