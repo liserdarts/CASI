@@ -45,7 +45,7 @@ Public Class MSSqlConnection
         Using Connection = GetConnection("Master")
             Using Cmd = Connection.CreateCommand
                 Cmd.CommandText = "Select Count(*) From sysdatabases Where name ='" & Database & "'"
-                Dim Exist = Convert.ToInt32(Cmd.ExecuteScalar(Cmd)) > 0
+                Dim Exist = Convert.ToInt32(Cmd.ExecuteScalar) > 0
                 If Exist Then Return
             End Using
 
