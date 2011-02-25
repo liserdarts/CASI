@@ -10,7 +10,7 @@ Namespace Sql
 ''' </summary>
 ''' <remarks>
 ''' The table where the scripts are recorded is create with this
-''' Create Table [{0}]
+''' Create Table [TableName]
 '''	(ID BigInt Identity (1, 1) Not Null,
 '''	ScriptPath national character varying(255) Not Null,
 ''' InstallDate DateTime Not Null)
@@ -60,6 +60,11 @@ Public Class SqlRecorder
     ''' </summary>
     ''' <param name="Path">The path to the script.</param>
     Public Overrides Sub RecordScript(Path As String)
+        'It is possible for RecordScript to run before HasRunScript if the process has been customized.
+        'For example if the system is converting to CASI from something else it would first have to record the scripts that ran under the old system.
+        'Make sure the table exists
+        CreateTable
+
         Using Cmd = Connection.Connection.CreateCommand
             Cmd.CommandText = _
                 "Insert Into [{0}] " &
