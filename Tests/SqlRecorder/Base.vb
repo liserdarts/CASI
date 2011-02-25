@@ -9,12 +9,11 @@ Public Class Base
     Inherits TestFramework.TestCase
 
     Protected Connection As TestSqlConnection
+    Protected Recorder As Sql.SqlRecorder
     
     Public Overrides Sub Test()
         GetConnection
-
-        Dim Recorder As New Sql.SqlRecorder
-        Recorder.Connection = Connection
+        CreateRecorder
 
         AssertIsFalse(Recorder.HasRunScript("Script1"))
         AssertIsFalse(Recorder.HasRunScript("Script2"))
@@ -28,6 +27,12 @@ Public Class Base
     Protected Overridable Sub GetConnection()
         Connection = GetOverride(Of Overriders.SqlDatabaseOverride).GetConnection
         Connection.Init
+    End Sub
+
+    
+    Protected Overridable Sub CreateRecorder()
+        Recorder = New Sql.SqlRecorder
+        Recorder.Connection = Connection
     End Sub
 
 End Class
