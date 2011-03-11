@@ -83,6 +83,7 @@
     <Compile Include="FolderSorter\Base.vb" />
     <Compile Include="SqlRecorder\RecordScriptFirst.vb" />
     <Compile Include="SqlRunner.vb" />
+    <Compile Include="TestScriptProperty.vb" />
     <Compile Include="TestSqlConnection.vb" />
     <Compile Include="Overriders\FileOverride.vb" />
     <Compile Include="Overriders\SqlDatabaseOverride.vb" />

@@ -33,7 +33,11 @@ Public Class Base
     End Sub
 
     Protected Overridable Sub Run()
-        Runner.Run
+        Try
+            Runner.Run
+        Finally
+            AssertIsFalse(Executor.TestProperty.Open)
+        End Try
     End Sub
 
     Protected Overridable Sub Transaction_BeginTransactionEvent(sender As Object, e As EventArgs) Handles Transaction.BeginTransactionEvent

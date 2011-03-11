@@ -42,22 +42,26 @@ Public Class ScriptRunner
     ''' Runs the whole process of finding, running and recording all the scripts.
     ''' </summary>
     Public Sub Run()
-        Initialize
-
-        Dim Paths = FilterScripts(GetScripts)
-
-        BeginTransaction
-
         Try
-            RunScripts(Paths)
-            CommitTransaction
-        Catch Ex As Exception
-            Transaction.RollbackTransaction
-            Throw
-        End Try
+            Initialize
 
-        'The recorder may not be affected by the transaction, and can't guarantee will have it's changes reverted on an error
-        RecordScripts(Paths)
+            Dim Paths = FilterScripts(GetScripts)
+
+            BeginTransaction
+
+            Try
+                RunScripts(Paths)
+                CommitTransaction
+            Catch Ex As Exception
+                Transaction.RollbackTransaction
+                Throw
+            End Try
+
+            'The recorder may not be affected by the transaction, and can't guarantee will have it's changes reverted on an error
+            RecordScripts(Paths)
+        Finally
+            Close
+        End Try
     End Sub
 
     ''' <summary>
@@ -71,6 +75,20 @@ Public Class ScriptRunner
             OnProgressChanged(ProgressChangedEventArgs.ProgressStages.Initialize, I / Properties.Count)
             Console.WriteLine("Initializing " & Properties(I).GetType.FullName)
             Properties(I).Init
+        Next
+    End Sub
+
+    ''' <summary>
+    ''' Closes every <c>ScriptProperty</c> object.
+    ''' </summary>
+    Private Sub Close()
+        OnProgressChanged(ProgressChangedEventArgs.ProgressStages.Close, 0)
+
+        Dim Properties = GetPropertyObjects
+        For I As Integer = 0 To Properties.Count - 1
+            OnProgressChanged(ProgressChangedEventArgs.ProgressStages.Close, I / Properties.Count)
+            Console.WriteLine("Closing " & Properties(I).GetType.FullName)
+            Properties(I).Close
         Next
     End Sub
 

@@ -84,6 +84,9 @@ Class MainWindow
         Case ProgressChangedEventArgs.ProgressStages.RecordScripts
             StageText = "Recording Scripts"
             UxProgress.IsIndeterminate = False
+        Case ProgressChangedEventArgs.ProgressStages.Close
+            StageText = "Closing"
+            UxProgress.IsIndeterminate = False
         Case Else
             StageText = e.Stage.ToString
             UxProgress.IsIndeterminate = True
