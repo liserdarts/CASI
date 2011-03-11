@@ -15,6 +15,7 @@ Public Class ProgressChangedEventArgs
         RunScripts = 5
         CommitTransaction = 6
         RecordScripts = 7
+        Close = 8
     End Enum
 
     ''' <summary>

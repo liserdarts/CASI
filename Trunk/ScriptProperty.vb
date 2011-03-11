@@ -29,7 +29,13 @@ Public MustInherit Class ScriptProperty
     End Property
 
     ''' <summary>
-    ''' When overridden in a derived class prepares the object for use
+    ''' When overridden in a derived class, prepares the object for use
     ''' </summary>
     Public MustOverride Sub Init()
+
+
+    ''' <summary>
+    ''' When overridden in a derived class, destroys objects and closes file and connections
+    ''' </summary>
+    Public MustOverride Sub Close()
 End Class

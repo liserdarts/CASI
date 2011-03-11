@@ -22,6 +22,12 @@ Public MustInherit Class SqlConnection
     ''' </summary>
     ''' <value>The transaction the connection is currently in.</value>
     Public Property Transaction As Common.DbTransaction
-    
+
+    Public Overrides Sub Close()
+        If Connection IsNot Nothing Then
+            Connection.Close
+            Connection = Nothing
+        End If
+    End Sub
 End Class
 End Namespace

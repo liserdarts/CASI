@@ -29,6 +29,7 @@ Public Class ExecutionException
             'Should always get a test exception
             Assert(False)
         Catch Ex As TestException
+            Assert(True)
         End Try
     End Sub
 
