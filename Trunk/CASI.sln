@@ -7,6 +7,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CASI.Sample", "Sample\CASI.
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CASI.Tests", "Tests\CASI.Tests.vbproj", "{CEC03019-1222-4516-8E9E-770EDEA1ED30}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CASI.UI", "UI\CASI.UI.vbproj", "{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{CEC03019-1222-4516-8E9E-770EDEA1ED30}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{CEC03019-1222-4516-8E9E-770EDEA1ED30}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{CEC03019-1222-4516-8E9E-770EDEA1ED30}.Release|x86.ActiveCfg = Release|Any CPU
+		{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
