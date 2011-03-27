@@ -26,9 +26,7 @@ Class MainWindow
     End Sub
 
     Private Sub UXRun_Click(sender As Object, e As RoutedEventArgs) Handles UXRun.Click
-        For Each Child In FindChildren(Of PropertyEditorLibrary.PropertyEditor)(UxPropertyObjects)
-            Child.IsEnabled = False
-        Next
+        UxPropertyObjects.IsReadOnly = True
         UXRun.IsEnabled = False
         UxResults.Visibility = Windows.Visibility.Visible
 
@@ -99,21 +97,4 @@ Class MainWindow
         
         UxProgress.Value = e.Progress * 100
     End Sub
-
-    Private Function FindChildren(Of T As DependencyObject)(Parent As FrameworkElement) As List(Of T)
-        Dim Children As New List(Of T)
-        
-        For I As Integer = 0 To VisualTreeHelper.GetChildrenCount(Parent) - 1
-            Dim Cur As DependencyObject
-            Cur = VisualTreeHelper.GetChild(Parent, I)
-            
-            If TypeOf Cur Is T Then
-                Children.Add(Cur)
-            Else
-                Children.AddRange(FindChildren(Of T)(Cur))
-            End If
-        Next
-        
-        Return Children
-    End Function
 End Class
