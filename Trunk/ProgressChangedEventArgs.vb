@@ -31,11 +31,37 @@ Public Class ProgressChangedEventArgs
     ''' <summary>
     ''' Gets or sets the stage.
     ''' </summary>
-    Public Property Stage As ProgressStages
+    Public Property Stage() As ProgressStages
 
     ''' <summary>
     ''' Gets or sets the progress percentage.
     ''' </summary>
     ''' <value>The progress as a decimal between 0 and 1.</value>
-    Public Property Progress As Double
+    Public Property Progress() As Double
+
+    ''' <summary>
+    ''' Gets a short title of the stage.
+    ''' </summary>
+    Public Function GetStageText() As String
+        Select Case Stage
+        Case ProgressChangedEventArgs.ProgressStages.Initialize
+            Return "Initializing"
+        Case ProgressChangedEventArgs.ProgressStages.GetScripts
+            Return "Getting Scripts"
+        Case ProgressChangedEventArgs.ProgressStages.FilterScripts
+            Return "Filtering Scripts"
+        Case ProgressChangedEventArgs.ProgressStages.BeginTransaction
+            Return "Beginning Transaction"
+        Case ProgressChangedEventArgs.ProgressStages.RunScripts
+            Return "Running Scripts"
+        Case ProgressChangedEventArgs.ProgressStages.CommitTransaction
+            Return "Committing Transaction"
+        Case ProgressChangedEventArgs.ProgressStages.RecordScripts
+            Return "Recording Scripts"
+        Case ProgressChangedEventArgs.ProgressStages.Close
+            Return "Closing"
+        Case Else
+            Return Stage.ToString
+        End Select
+    End Function
 End Class
