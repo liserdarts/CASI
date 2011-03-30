@@ -23,6 +23,7 @@ Class MainWindow
         Runner.Transaction = Transaction
 
         UxPropertyObjects.ItemsSource = Runner.GetPropertyObjects
+        UxProgress.Runner = Runner
     End Sub
 
     Private Sub UXRun_Click(sender As Object, e As RoutedEventArgs) Handles UXRun.Click
@@ -52,49 +53,12 @@ Class MainWindow
         UxProgress.Visibility = Windows.Visibility.Collapsed
     End Sub
     Private Sub Runner_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles Runner.ProgressChanged
-        If Not Dispatcher.CheckAccess Then
-            Dispatcher.BeginInvoke(New EventHandler(Of ProgressChangedEventArgs)(AddressOf Runner_ProgressChanged), sender, e)
-            Return
-        End If
-
         Static LastStageText As String
-        Dim StageText As String
-
-        Select Case e.Stage
-        Case ProgressChangedEventArgs.ProgressStages.Initialize
-            StageText = "Initializing"
-            UxProgress.IsIndeterminate = False
-        Case ProgressChangedEventArgs.ProgressStages.GetScripts
-            StageText = "Getting Scripts"
-            UxProgress.IsIndeterminate = True
-        Case ProgressChangedEventArgs.ProgressStages.FilterScripts
-            StageText = "Filtering Scripts"
-            UxProgress.IsIndeterminate = False
-        Case ProgressChangedEventArgs.ProgressStages.BeginTransaction
-            StageText = "Beginning Transaction"
-            UxProgress.IsIndeterminate = True
-        Case ProgressChangedEventArgs.ProgressStages.RunScripts
-            StageText = "Running Scripts"
-            UxProgress.IsIndeterminate = False
-        Case ProgressChangedEventArgs.ProgressStages.CommitTransaction
-            StageText = "Committing Transaction"
-            UxProgress.IsIndeterminate = True
-        Case ProgressChangedEventArgs.ProgressStages.RecordScripts
-            StageText = "Recording Scripts"
-            UxProgress.IsIndeterminate = False
-        Case ProgressChangedEventArgs.ProgressStages.Close
-            StageText = "Closing"
-            UxProgress.IsIndeterminate = False
-        Case Else
-            StageText = e.Stage.ToString
-            UxProgress.IsIndeterminate = True
-        End Select
+        Dim StageText As String = e.GetStageText
 
         If LastStageText <> StageText Then
             Console.WriteLine(StageText)
             LastStageText = StageText
         End If
-        
-        UxProgress.Value = e.Progress * 100
     End Sub
 End Class
