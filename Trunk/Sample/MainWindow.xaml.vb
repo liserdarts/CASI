@@ -38,7 +38,7 @@ Class MainWindow
     End Sub
 
     Private Sub Run()
-        Console.SetOut(New TextBoxWriter(UxLog))
+        Console.SetOut(New UI.TextBoxWriter(UxLog))
         Try
             Runner.Run
             Console.WriteLine("Done")
