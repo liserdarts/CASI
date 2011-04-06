@@ -14,7 +14,7 @@ Public Class Folder
     ''' Gets or sets the folder path.
     ''' </summary>
     ''' <value>The folder path.</value>
-    Public Property Folder As String
+    Public Property Folder() As String
 
     Public Overrides Sub Init()
     End Sub
