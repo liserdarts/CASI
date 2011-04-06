@@ -22,12 +22,12 @@ Class MainWindow
         Runner.Executor = Executor
         Runner.Transaction = Transaction
 
-        UxSqlConnection.Connection = (From P In Runner.GetPropertyObjects Where TypeOf P Is Sql.MSSqlConnection).First
+        UxPropertyObjects.ItemsSource = Runner.GetPropertyObjects
         UxProgress.Runner = Runner
     End Sub
 
     Private Sub UXRun_Click(sender As Object, e As RoutedEventArgs) Handles UXRun.Click
-        UxSqlConnection.IsReadOnly = True
+        UxPropertyObjects.IsReadOnly = True
         UXRun.IsEnabled = False
         UxResults.Visibility = Windows.Visibility.Visible
 

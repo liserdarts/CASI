@@ -84,6 +84,10 @@
     <Compile Include="GenericDesigner.xaml.vb">
       <DependentUpon>GenericDesigner.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GenericEditor.xaml.vb">
+      <DependentUpon>GenericEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IScriptPropertyEditor.vb" />
     <Compile Include="MSSqlConnectionEditor.xaml.vb">
       <DependentUpon>MSSqlConnectionEditor.xaml</DependentUpon>
     </Compile>
@@ -103,6 +107,10 @@
     <Compile Include="Progress.xaml.vb">
       <DependentUpon>Progress.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PropertyGridEditor.xaml.vb">
+      <DependentUpon>PropertyGridEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TargetTypeAttribute.vb" />
     <Compile Include="TextBoxWriter.vb" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -120,11 +128,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="GenericEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MSSqlConnectionEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Progress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PropertyGridEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

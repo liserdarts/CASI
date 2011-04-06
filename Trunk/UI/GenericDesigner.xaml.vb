@@ -22,23 +22,23 @@ Public Class GenericDesigner
         End Get
         Set
             LIsReadOnly = Value
-            For Each Child In FindChildren(Of PropertyEditorLibrary.PropertyEditor)(UxPropertyObjects)
-                Child.IsEnabled = Not Value
+            For Each Child In FindChildren(UxPropertyObjects)
+                Child.IsReadOnly = Value
             Next
         End Set
     End Property
     
-    Private Function FindChildren(Of T As DependencyObject)(Parent As FrameworkElement) As List(Of T)
-        Dim Children As New List(Of T)
+    Private Function FindChildren(Parent As FrameworkElement) As List(Of IScriptPropertyEditor)
+        Dim Children As New List(Of IScriptPropertyEditor)
         
         For I As Integer = 0 To VisualTreeHelper.GetChildrenCount(Parent) - 1
             Dim Cur As DependencyObject
             Cur = VisualTreeHelper.GetChild(Parent, I)
             
-            If TypeOf Cur Is T Then
+            If TypeOf Cur Is IScriptPropertyEditor Then
                 Children.Add(Cur)
             Else
-                Children.AddRange(FindChildren(Of T)(Cur))
+                Children.AddRange(FindChildren(Cur))
             End If
         Next
         
