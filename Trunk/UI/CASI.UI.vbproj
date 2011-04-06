@@ -84,6 +84,9 @@
     <Compile Include="GenericDesigner.xaml.vb">
       <DependentUpon>GenericDesigner.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MSSqlConnectionEditor.xaml.vb">
+      <DependentUpon>MSSqlConnectionEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -116,6 +119,10 @@
     <Page Include="GenericDesigner.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MSSqlConnectionEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Progress.xaml">
       <SubType>Designer</SubType>
