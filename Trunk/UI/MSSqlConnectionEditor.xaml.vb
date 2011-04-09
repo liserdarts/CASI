@@ -8,7 +8,7 @@
 Public Class MSSqlConnectionEditor
     Implements IScriptPropertyEditor
     
-    Dim WithEvents Connection As Sql.MSSqlConnection
+    Dim Connection As Sql.MSSqlConnection
     Public Property ScriptProperty() As ScriptProperty Implements IScriptPropertyEditor.ScriptProperty
         Get
             Return Connection
