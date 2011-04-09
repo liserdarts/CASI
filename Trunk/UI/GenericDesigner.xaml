@@ -6,12 +6,19 @@
     xmlns:local="clr-namespace:CASI.UI"
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <local:WidthConverter x:Key="WidthConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
     <Grid>
         <ScrollViewer>
             <ListBox x:Name="UxPropertyObjects" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Width="{Binding ViewportWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}}">
+                        <StackPanel Width="{Binding ViewportWidth, Converter={StaticResource WidthConverter}, ConverterParameter=2, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}}">
                             <TextBlock FontWeight="Bold" Text="{Binding PropertyName}" HorizontalAlignment="Stretch" />
                             <local:GenericEditor ScriptProperty="{Binding}" HorizontalAlignment="Stretch" />
                         </StackPanel>

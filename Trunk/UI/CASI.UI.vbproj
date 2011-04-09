@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="TargetTypeAttribute.vb" />
     <Compile Include="TextBoxWriter.vb" />
+    <Compile Include="WidthConverter.vb" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
