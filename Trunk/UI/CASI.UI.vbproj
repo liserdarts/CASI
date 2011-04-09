@@ -81,6 +81,9 @@
     <Import Include="System.Windows.Navigation" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FolderEditor.xaml.vb">
+      <DependentUpon>FolderEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GenericDesigner.xaml.vb">
       <DependentUpon>GenericDesigner.xaml</DependentUpon>
     </Compile>
@@ -124,6 +127,10 @@
     <AppDesigner Include="My Project\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="FolderEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GenericDesigner.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
