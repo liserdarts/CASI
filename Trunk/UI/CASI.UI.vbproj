@@ -81,6 +81,7 @@
     <Import Include="System.Windows.Navigation" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandLineParser.vb" />
     <Compile Include="FolderEditor.xaml.vb">
       <DependentUpon>FolderEditor.xaml</DependentUpon>
     </Compile>
