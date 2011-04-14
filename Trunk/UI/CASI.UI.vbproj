@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLineParser.vb" />
+    <Compile Include="ConsolePropertyParser.vb" />
     <Compile Include="FolderEditor.xaml.vb">
       <DependentUpon>FolderEditor.xaml</DependentUpon>
     </Compile>

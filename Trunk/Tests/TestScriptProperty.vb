@@ -7,7 +7,8 @@
 Public Class TestScriptProperty
     Inherits ScriptProperty
     
-    Public Open As Boolean
+    Public Property TestProperty() As String
+    Public Property Open() As Boolean
 
     Public Overrides Sub Init()
         Open = True
