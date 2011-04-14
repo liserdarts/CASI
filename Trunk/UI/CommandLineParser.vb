@@ -81,9 +81,19 @@ Public Class CommandLineParser
     End Property
 
     ''' <summary>
+    ''' Gets a value indicating whether this <see cref="CommandLineParser" /> is contains the parameter.
+    ''' </summary>
+    ''' <value><c>True</c> if the parameter is present; otherwise, <c>False</c>.</value>
+    Public ReadOnly Property Contains(Param As String) As Boolean
+        Get
+            Return LParameters.ContainsKey(Param)
+        End Get
+    End Property
+
+    ''' <summary>
     ''' Gets the value of the given parameter.
     ''' </summary>
-    Default Public ReadOnly Property Item(ByVal Param As String) As String
+    Public Default ReadOnly Property Item(Param As String) As String
         Get
             If LParameters.ContainsKey(Param) Then
                 Return LParameters(Param)

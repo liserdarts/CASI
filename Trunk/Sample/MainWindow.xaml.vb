@@ -4,24 +4,16 @@
 'You may obtain a copy of the license at 
 'http://casi.codeplex.com/license
 
-Class MainWindow 
+Class MainWindow
+
+    Dim Runner As New ScriptRunner
     
-    Dim Finder As New ResourceFinder
-    Dim Recorder As New Sql.SqlRecorder
-    Dim Executor As New Sql.MSSqlExecutor
-    Dim Transaction As New Sql.SqlTransactionProvider
-    Dim WithEvents Runner As New ScriptRunner
+    Public Sub New(Runner As ScriptRunner)
+        InitializeComponent
+        Me.Runner = Runner
+    End Sub
     
     Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        Finder.Assembly = Me.GetType.Assembly
-        Finder.FilePattern = ".*sql$"
-        
-        Runner = New ScriptRunner
-        Runner.Finder = Finder
-        Runner.Recorder = Recorder
-        Runner.Executor = Executor
-        Runner.Transaction = Transaction
-
         UxPropertyObjects.ItemsSource = Runner.GetPropertyObjects
         UxProgress.Runner = Runner
     End Sub
@@ -51,14 +43,5 @@ Class MainWindow
     End Sub
     Private Sub Finish()
         UxProgress.Visibility = Windows.Visibility.Collapsed
-    End Sub
-    Private Sub Runner_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles Runner.ProgressChanged
-        Static LastStageText As String
-        Dim StageText As String = e.GetStageText
-
-        If LastStageText <> StageText Then
-            Console.WriteLine(StageText)
-            LastStageText = StageText
-        End If
     End Sub
 End Class
