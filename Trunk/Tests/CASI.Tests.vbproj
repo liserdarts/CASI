@@ -77,6 +77,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandLine.vb" />
     <Compile Include="FileFinder\Base.vb" />
     <Compile Include="FileFinder\OnlySqlFiles.vb" />
     <Compile Include="FileFinder\RelativePath.vb" />
@@ -144,6 +145,10 @@
     <ProjectReference Include="..\CASI.vbproj">
       <Project>{E18A4236-5BFC-4033-A62C-BBADF7BBDD8E}</Project>
       <Name>CASI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UI\CASI.UI.vbproj">
+      <Project>{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}</Project>
+      <Name>CASI.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
