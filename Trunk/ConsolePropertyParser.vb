@@ -62,4 +62,22 @@ Public Class ConsolePropertyParser
         Return PropertySet
     End Function
 
+    ''' <summary>
+    ''' Builds arguments that can be used on the command line.
+    ''' </summary>
+    ''' <returns>A string that can be parsed to set the properties again.</returns>
+    Public Function Build() As String
+        Dim Builder As New CommandLineParser
+        
+        For Each Obj In Runner.GetPropertyObjects
+            For Each Prop In Obj.GetType.GetProperties
+                If Prop.CanRead And Prop.CanWrite And Prop.GetIndexParameters.Length = 0 And Prop.PropertyType Is GetType(String) Then
+                    Builder.Add(String.Format("{0}.{1}", Prop.DeclaringType.Name, Prop.Name), Prop.GetValue(Obj, Nothing))
+                End If
+            Next
+        Next
+
+        Return Builder.Build
+    End Function
+
 End Class
