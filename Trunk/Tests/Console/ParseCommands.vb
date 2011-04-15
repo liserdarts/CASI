@@ -5,11 +5,14 @@
 'http://casi.codeplex.com/license
 
 Namespace Console
+''' <summary>
+''' Test using <c>CommandLineParser</c> to parse arguments from the command line
+''' </summary>
 Public Class ParseCommands
     Inherits TestFramework.TestCase
     
-    Dim Args As List(Of String)
-    Dim Parameters As Dictionary(Of String, String)
+    Protected Args As List(Of String)
+    Protected Parameters As Dictionary(Of String, String)
 
     Public Overrides Sub Test()
         Args = New List(Of String)
@@ -20,10 +23,7 @@ Public Class ParseCommands
         AddArg("/param3=value3", "param3", "value3")
 
         AddArg("-param4:value4", "param4", "value4")
-
-        Args.Add("-param5")
-        Args.Add("value5")
-        Parameters.Add("param5", "value5")
+        AddArg("-param5 value5", "param5", "value5")
 
         AddArg("-param6=""value6-/=""", "param6", "value6-/=")
         AddArg("-param7=""value7-/=""", "param7", "value7-/=")
@@ -36,12 +36,13 @@ Public Class ParseCommands
     End Sub
 
     Protected Overridable Sub AddArg(Arg As String, Name As String, Value As String)
-        Args.Add(Arg)
+        Args.AddRange(Arg.Split(" "))
         Parameters.Add(Name, Value)
     End Sub
 
     Protected Overridable Sub CheckParams()
-        Dim Parser As New CommandLineParser(Args)
+        Dim Parser As New CommandLineParser
+        Parser.Parse(Args)
         
         AssertGreater(Parameters.Count, 0)
         AssertIsEqual(Parameters.Count, Parser.Parameters.Count)

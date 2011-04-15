@@ -77,6 +77,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Console\BuildCommands.vb" />
     <Compile Include="Console\ParseCommands.vb" />
     <Compile Include="Console\ParseProperties.vb" />
     <Compile Include="FileFinder\Base.vb" />

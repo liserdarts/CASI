@@ -26,8 +26,10 @@ Public Class ConsolePropertyParser
     ''' <returns><c>True</c> if any properties were set, otherwise <c>False</c>.</returns>
     ''' <remarks></remarks>
     Public Function Parse(Args As IEnumerable(Of String)) As Boolean
-        Dim CommandLine As New CommandLineParser(Args)
+        Dim CommandLine As New CommandLineParser
         Dim PropertySet As Boolean
+
+        CommandLine.Parse(Args)
         
         For Each Obj In Runner.GetPropertyObjects
             For Each Prop In Obj.GetType.GetProperties
