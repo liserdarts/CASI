@@ -16,7 +16,7 @@ Public Class PropertyParser
         Runner.Recorder = New TestRecoder
         Runner.Transaction = New TestTransactionProvider
         
-        Dim Parser As New UI.ConsolePropertyParser(Runner)
+        Dim Parser As New ConsolePropertyParser(Runner)
         AssertIsFalse(Parser.Parse(New String(){}))
 
         AssertIsFalse(Executor.TestProperty.Open)

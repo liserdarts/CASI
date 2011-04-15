@@ -13,7 +13,7 @@ Public Class Core
     Public Shared Sub Main(Args() As String)
         CreateRunner
 
-        Dim CommandRunner As New UI.ConsolePropertyParser(Runner)
+        Dim CommandRunner As New ConsolePropertyParser(Runner)
         If CommandRunner.Parse(Args) Then 'Run the scripts now
             Runner.Run
         Else 'Display the UI

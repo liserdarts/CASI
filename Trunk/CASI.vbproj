@@ -73,6 +73,8 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandLineParser.vb" />
+    <Compile Include="ConsolePropertyParser.vb" />
     <Compile Include="FileFinder.vb" />
     <Compile Include="Folder.vb" />
     <Compile Include="FolderSorter.vb" />

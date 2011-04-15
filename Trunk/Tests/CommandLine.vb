@@ -40,7 +40,7 @@ Public Class CommandLine
     End Sub
 
     Protected Overridable Sub CheckParams()
-        Dim Parser As New UI.CommandLineParser(Args)
+        Dim Parser As New CommandLineParser(Args)
         
         AssertGreater(Parameters.Count, 0)
         AssertIsEqual(Parameters.Count, Parser.Parameters.Count)
