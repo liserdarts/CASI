@@ -4,7 +4,8 @@
 'You may obtain a copy of the license at 
 'http://casi.codeplex.com/license
 
-Public Class PropertyParser
+Namespace Console
+Public Class ParseProperties
     Inherits TestFramework.TestCase
     
     Public Overrides Sub Test()
@@ -26,3 +27,4 @@ Public Class PropertyParser
         AssertIsEqual(Executor.TestProperty.TestProperty, "TestValue")
     End Sub
 End Class
+End Namespace

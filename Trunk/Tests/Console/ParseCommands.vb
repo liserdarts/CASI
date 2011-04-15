@@ -4,7 +4,8 @@
 'You may obtain a copy of the license at 
 'http://casi.codeplex.com/license
 
-Public Class CommandLine
+Namespace Console
+Public Class ParseCommands
     Inherits TestFramework.TestCase
     
     Dim Args As List(Of String)
@@ -55,3 +56,4 @@ Public Class CommandLine
     End Sub
 
 End Class
+End Namespace
