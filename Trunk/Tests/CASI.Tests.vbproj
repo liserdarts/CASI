@@ -77,12 +77,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandLine.vb" />
+    <Compile Include="Console\ParseCommands.vb" />
+    <Compile Include="Console\ParseProperties.vb" />
     <Compile Include="FileFinder\Base.vb" />
     <Compile Include="FileFinder\OnlySqlFiles.vb" />
     <Compile Include="FileFinder\RelativePath.vb" />
     <Compile Include="FolderSorter\Base.vb" />
-    <Compile Include="PropertyParser.vb" />
     <Compile Include="SqlRecorder\RecordScriptFirst.vb" />
     <Compile Include="SqlRunner.vb" />
     <Compile Include="TestScriptProperty.vb" />
