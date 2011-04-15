@@ -12,14 +12,36 @@ Imports System.Text.RegularExpressions
 Public Class CommandLineParser
 
     ''' <summary>
-    ''' Initializes a new instance of the <see cref="CommandLineParser" /> class.
+    ''' Clears all the parsed parameters.
+    ''' </summary>
+    Public Sub Clear()
+        LParameters.Clear
+    End Sub
+    
+    ''' <summary>
+    ''' Adds a parameter.
+    ''' </summary>
+    ''' <param name="Param">The name of the parameter.</param>
+    ''' <param name="Value">The value of the parameter.</param>
+    ''' <returns><c>True</c> if the parameter was added, otherwise <c>False</c>.</returns>
+    ''' <remarks>The parameter will not be added if a parameter with the same name already exists.</remarks>
+    Public Function Add(Param As String, Value As String) As Boolean
+        If Not LParameters.ContainsKey(Param) Then
+            LParameters.Add(Param, Value)
+            Return True
+        End If
+        Return False
+    End Function
+
+    ''' <summary>
+    ''' Parses arguments from the command line.
     ''' </summary>
     ''' <param name="Args">The arguments passed on the command line.</param>
     ''' <remarks>
     ''' Many formats are acceptable
 	''' Examples: -param1 value1 --param2 /param3:"Test-:-work" /param4=happy -param5 '--=nice=--'
     ''' </remarks>
-    Public Sub New(Args As IEnumerable(Of String))
+    Public Sub Parse(Args As IEnumerable(Of String))
         Dim Spliter As Regex = New Regex("^-{1,2}|^/|=|:", RegexOptions.IgnoreCase Or RegexOptions.Compiled)
         Dim Remover As Regex = New Regex("^['""]?(.*?)['""]?$", RegexOptions.IgnoreCase Or RegexOptions.Compiled)
         Dim Parameter As String = Nothing
@@ -31,27 +53,21 @@ Public Class CommandLineParser
             Select Case Parts.Length
             Case 1 'Found a value (for the last parameter found (space separator))
                 If Parameter IsNot Nothing Then
-                    If Not LParameters.ContainsKey(Parameter) Then
-                        Parts(0) = Remover.Replace(Parts(0), "$1")
-                        LParameters.Add(Parameter, Parts(0))
-                    End If
+                    Parts(0) = Remover.Replace(Parts(0), "$1")
+                    Add(Parameter, Parts(0))
                     Parameter = Nothing
                 End If
                 'Else Error: no parameter waiting for a value (skipped)
             
-            Case 2 'The last parameter is still waiting. With no value, set it to true.
-                If Parameter IsNot Nothing Then
-                    If Not LParameters.ContainsKey(Parameter) Then
-                        LParameters.Add(Parameter, "true")
-                    End If
+            Case 2 'Found a new parameter
+                If Parameter IsNot Nothing Then 'The last parameter is still waiting. With no value, set it to true.
+                    Add(Parameter, "true")
                 End If
                 Parameter = Parts(1)
             
-            Case 3 'Parameter with enclosed value
+            Case 3 'Found a parameter with enclosed value
                 If Parameter IsNot Nothing Then 'The last parameter is still waiting. With no value, set it to true.
-                    If Not LParameters.ContainsKey(Parameter) Then
-                        LParameters.Add(Parameter, "true")
-                    End If
+                    Add(Parameter, "true")
                 End If
                 Parameter = Parts(1)
                 
@@ -70,6 +86,24 @@ Public Class CommandLineParser
         End If
     End Sub
     
+    ''' <summary>
+    ''' Builds arguments that can be used on the command line.
+    ''' </summary>
+    ''' <returns>A string that can be parsed to recreated the parameters.</returns>
+    Public Function Build() As String
+        Dim Builder As New Text.StringBuilder
+
+        For Each Param In LParameters
+            Builder.Append("-")
+            Builder.Append(Param.Key)
+            Builder.Append("=""")
+            Builder.Append(Param.Value)
+            Builder.Append(""" ")
+        Next
+
+        Return Builder.ToString
+    End Function
+
     Dim LParameters As New Dictionary(Of String, String)
     ''' <summary>
     ''' Gets all the parameters parsed into a name value dictionary.
