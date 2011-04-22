@@ -81,6 +81,9 @@
     <Import Include="System.Windows.Navigation" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsolePropertyBuilder.xaml.vb">
+      <DependentUpon>ConsolePropertyBuilder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FolderEditor.xaml.vb">
       <DependentUpon>FolderEditor.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
     <AppDesigner Include="My Project\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ConsolePropertyBuilder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FolderEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
