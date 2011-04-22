@@ -44,4 +44,9 @@ Class MainWindow
     Private Sub Finish()
         UxProgress.Visibility = Windows.Visibility.Collapsed
     End Sub
+
+    Private Sub UxBuildCommandLine_Click(sender As Object, e As RoutedEventArgs) Handles UxBuildCommandLine.Click
+        Dim Command As New CommandLine(Runner)
+        Command.ShowDialog
+    End Sub
 End Class
