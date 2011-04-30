@@ -42,26 +42,28 @@ Public Class ScriptRunner
     ''' Runs the whole process of finding, running and recording all the scripts.
     ''' </summary>
     Public Sub Run()
-        Try
-            Initialize
-
-            Dim Paths = FilterScripts(GetScripts)
-
-            BeginTransaction
-
+        SyncLock Me
             Try
-                RunScripts(Paths)
-                CommitTransaction
-            Catch Ex As Exception
-                Transaction.RollbackTransaction
-                Throw
-            End Try
+                Initialize
 
-            'The recorder may not be affected by the transaction, and can't guarantee will have it's changes reverted on an error
-            RecordScripts(Paths)
-        Finally
-            Close
-        End Try
+                Dim Paths = FilterScripts(GetScripts)
+
+                BeginTransaction
+
+                Try
+                    RunScripts(Paths)
+                    CommitTransaction
+                Catch Ex As Exception
+                    Transaction.RollbackTransaction
+                    Throw
+                End Try
+
+                'The recorder may not be affected by the transaction, and can't guarantee will have it's changes reverted on an error
+                RecordScripts(Paths)
+            Finally
+                Close
+            End Try
+        End SyncLock
     End Sub
 
     ''' <summary>
