@@ -11,11 +11,11 @@ Public Class OnlyRunOnce
     Public Overrides Sub Test()
         CreateRunner
         
-        Runner.Run
+        Batch.Run
         AssertGreater(Executor.RunLog.Count, 0)
         
         Executor.RunLog.Clear
-        Runner.Run
+        Batch.Run
         AssertIsEqual(Executor.RunLog.Count, 0)
     End Sub
 End Class

@@ -6,16 +6,18 @@
 
 Class MainWindow
 
-    Dim Runner As New ScriptRunner
+    Dim Batch As New ScriptBatch
     
-    Public Sub New(Runner As ScriptRunner)
+    Public Sub New(Batch As ScriptBatch)
         InitializeComponent
-        Me.Runner = Runner
+        Me.Batch = Batch
     End Sub
     
     Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
-        UxPropertyObjects.ItemsSource = Runner.GetPropertyObjects
-        UxProgress.Runner = Runner
+        Console.SetOut(New UI.TextBoxWriter(UxLog))
+
+        UxPropertyObjects.ItemsSource = Batch.Template.GetPropertyObjects
+        UxProgress.Runner = Batch.Runner
     End Sub
 
     Private Sub UXRun_Click(sender As Object, e As RoutedEventArgs) Handles UXRun.Click
@@ -30,9 +32,8 @@ Class MainWindow
     End Sub
 
     Private Sub Run()
-        Console.SetOut(New UI.TextBoxWriter(UxLog))
         Try
-            Runner.Run
+            Batch.Run
             Console.WriteLine("Done")
         Catch Ex As Exception
             Console.WriteLine(Ex.ToString)
@@ -46,7 +47,8 @@ Class MainWindow
     End Sub
 
     Private Sub UxBuildCommandLine_Click(sender As Object, e As RoutedEventArgs) Handles UxBuildCommandLine.Click
-        Dim Command As New CommandLine(Runner)
+        Dim Command As New CommandLine(Batch.Template)
         Command.ShowDialog
     End Sub
+
 End Class

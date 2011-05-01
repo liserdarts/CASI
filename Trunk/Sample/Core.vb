@@ -8,22 +8,22 @@ Public Class Core
     
     Public Declare Function FreeConsole Lib "kernel32.dll"() As Boolean
 
-    Shared WithEvents Runner As ScriptRunner
+    Shared WithEvents Batch As ScriptBatch
 
     Public Shared Sub Main(Args() As String)
-        CreateRunner
+        CreateBatch
 
-        Dim CommandRunner As New ConsolePropertyParser(Runner)
+        Dim CommandRunner As New ConsolePropertyParser(Batch.Template)
         If CommandRunner.Parse(Args) Then 'Run the scripts now
-            Runner.Run
+            Batch.Run
         Else 'Display the UI
             FreeConsole
-            Dim Frm As New MainWindow(Runner)
+            Dim Frm As New MainWindow(Batch)
             Frm.ShowDialog    
         End If
     End Sub
 
-    Private Shared Sub CreateRunner()
+    Private Shared Sub CreateBatch()
         Dim Finder As New ResourceFinder
         Dim Recorder As New Sql.SqlRecorder
         Dim Executor As New Sql.MSSqlExecutor
@@ -32,14 +32,14 @@ Public Class Core
         Finder.Assembly = GetType(Core).Assembly
         Finder.FilePattern = ".*sql$"
         
-        Runner = New ScriptRunner
-        Runner.Finder = Finder
-        Runner.Recorder = Recorder
-        Runner.Executor = Executor
-        Runner.Transaction = Transaction
+        Batch = New Scriptbatch
+        Batch.Template.Finder = Finder
+        Batch.Template.Recorder = Recorder
+        Batch.Template.Executor = Executor
+        Batch.Template.Transaction = Transaction
     End Sub
 
-    Private Shared Sub Runner_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles Runner.ProgressChanged
+    Private Shared Sub Runner_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles Batch.ProgressChanged
         Static LastStageText As String
         Dim StageText As String = e.GetStageText
 
