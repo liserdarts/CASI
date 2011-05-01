@@ -20,11 +20,19 @@
 
         <ui:GenericDesigner x:Name="UxPropertyObjects" Grid.Row="0" />
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
-            <Button x:Name="UxBuildCommandLine" Padding="4" Margin="4">Command Line</Button>
-            <Button x:Name="UXRun" IsDefault="True" Padding="4" Margin="4">Run</Button>
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="UxBuildCommandLine" Padding="4" Margin="4">Command Line</Button>
+                <Button x:Name="UXRun" IsDefault="True" Padding="4" Margin="4">Run</Button>
+            </StackPanel>
+            <Expander x:Name="UxDebuggerExpander" Header="Debug" IsExpanded="False">
+                <ScrollViewer MaxHeight="400" >
+                    <ui:Debugger x:Name="UxDebugger" />
+                </ScrollViewer>
+            </Expander>
         </StackPanel>
-        <StackPanel x:Name="UxResults" Grid.Row="2" Visibility="Collapsed">
+        
+        <StackPanel x:Name="UxResults" Grid.Row="2">
             <ui:Progress x:Name="UxProgress" Height="20" />
             <TextBox x:Name="UxLog" MaxHeight="400" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto" />
         </StackPanel>
