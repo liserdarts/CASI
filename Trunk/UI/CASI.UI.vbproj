@@ -84,6 +84,9 @@
     <Compile Include="ConsolePropertyBuilder.xaml.vb">
       <DependentUpon>ConsolePropertyBuilder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Debugger.xaml.vb">
+      <DependentUpon>Debugger.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FolderEditor.xaml.vb">
       <DependentUpon>FolderEditor.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,9 @@
     <Compile Include="PropertyGridEditor.xaml.vb">
       <DependentUpon>PropertyGridEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScriptDebugger.xaml.vb">
+      <DependentUpon>ScriptDebugger.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TargetTypeAttribute.vb" />
     <Compile Include="TextBoxWriter.vb" />
     <Compile Include="WidthConverter.vb" />
@@ -132,6 +138,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ConsolePropertyBuilder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Debugger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PropertyGridEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScriptDebugger.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

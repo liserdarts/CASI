@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="ScriptDebugger"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="34" d:DesignWidth="300">
+    
+    <StackPanel Orientation="Horizontal">
+        <Button x:Name="UxRecord" IsEnabled="False" Padding="2" Margin="2">
+            <TextBlock x:Name="UxRecordText">Record</TextBlock>
+        </Button>
+        <Button x:Name="UxRun" Content="Run" IsEnabled="False" Padding="2" Margin="2" />
+        <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
+    </StackPanel>
+</UserControl>

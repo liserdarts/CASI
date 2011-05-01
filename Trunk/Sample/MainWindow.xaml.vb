@@ -30,6 +30,10 @@ Class MainWindow
         Thread.Name = "ScriptRunner"
         Thread.Start
     End Sub
+    
+    Private Sub UxDebuggerExpander_Expanded(sender As Object, e As RoutedEventArgs) Handles UxDebuggerExpander.Expanded
+        UxDebugger.Batch = Batch
+    End Sub
 
     Private Sub Run()
         Try
