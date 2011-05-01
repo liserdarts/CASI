@@ -9,7 +9,7 @@ Public Class SqlRunner
     
     'ToDo: Create a TestSqlExecutor that uses a SQL server CE database
 
-    Protected WithEvents Runner As ScriptRunner
+    Protected WithEvents Batch As ScriptBatch
     Protected WithEvents Finder As CASI.FileFinder
     Protected WithEvents Transaction As Sql.SqlTransactionProvider
     Protected WithEvents Executor As Executor
@@ -22,25 +22,25 @@ Public Class SqlRunner
     End Sub
 
     Protected Overridable Sub CreateRunner()
-        Runner = New ScriptRunner
+        Batch = New ScriptBatch
         
         Finder = New CASI.FileFinder
         Transaction = New Sql.SqlTransactionProvider
         Executor = New TestSqlExecutor
         Recorder = New Sql.SqlRecorder
 
-        Runner.Finder = Finder
-        Runner.Recorder = Recorder
-        Runner.Transaction = Transaction
-        Runner.Executor = Executor
+        Batch.Template.Finder = Finder
+        Batch.Template.Recorder = Recorder
+        Batch.Template.Transaction = Transaction
+        Batch.Template.Executor = Executor
     End Sub
 
     Protected Overridable Sub SetPropertyObjects()
-        Runner.GetPropertyObjects
+        Batch.Template.GetPropertyObjects
     End Sub
 
     Protected Overridable Sub Run()
-        Runner.Run
+        Batch.Run
     End Sub
 
 End Class

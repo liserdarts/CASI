@@ -6,7 +6,7 @@
 
 Public Class ConsolePropertyBuilder
 
-    Public Shadows Property DataContext() As ScriptRunner
+    Public Shadows Property DataContext() As ScriptTemplate
         Get
             Return MyBase.DataContext
         End Get

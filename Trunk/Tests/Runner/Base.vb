@@ -8,7 +8,7 @@ Namespace Runner
 Public Class Base
     Inherits TestFramework.TestCase
 
-    Protected WithEvents Runner As ScriptRunner
+    Protected WithEvents Batch As ScriptBatch
     Protected WithEvents Finder As TestFinder
     Protected WithEvents Transaction As TestTransactionProvider
     Protected WithEvents Executor As TestExecutor
@@ -20,21 +20,21 @@ Public Class Base
     End Sub
 
     Protected Overridable Sub CreateRunner()
-        Runner = New ScriptRunner
+        Batch = New ScriptBatch
         
         Finder = New TestFinder
         Recorder = New TestRecoder
         Transaction = New TestTransactionProvider
         Executor = New TestExecutor
-        Runner.Finder = Finder
-        Runner.Recorder = Recorder
-        Runner.Transaction = Transaction
-        Runner.Executor = Executor
+        Batch.Template.Finder = Finder
+        Batch.Template.Recorder = Recorder
+        Batch.Template.Transaction = Transaction
+        Batch.Template.Executor = Executor
     End Sub
 
     Protected Overridable Sub Run()
         Try
-            Runner.Run
+            Batch.Run
         Finally
             AssertIsFalse(Executor.TestProperty.Open)
         End Try

@@ -12,13 +12,13 @@ Public Class BuildProperties
     Inherits ParseProperties
     
     Public Overrides Sub Test()
-        CreateRunner
+        CreateTemplate
         Executor.TestProperty.TestProperty = "TestValue"
 
-        Dim Parser As New ConsolePropertyParser(Runner)
+        Dim Parser As New ConsolePropertyParser(Template)
         Dim Args = Parser.Build
 
-        CreateRunner
+        CreateTemplate
         Parse(Args, "TestValue")
     End Sub
 

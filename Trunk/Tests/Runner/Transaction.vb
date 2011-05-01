@@ -12,7 +12,7 @@ Public Class Transaction
 
     Public Overrides Sub Test()
         CreateRunner
-        Runner.Run
+        Batch.Run
         AssertGreater(Executor.RunLog.Count, 0)
     End Sub
 

@@ -1,10 +1,10 @@
 ﻿Public Class CommandLine
 
-    Public Sub New(Runner As ScriptRunner)
+    Public Sub New(Template As ScriptTemplate)
         ' This call is required by the designer.
         InitializeComponent()
         
-        UxCommand.DataContext = Runner
+        UxCommand.DataContext = Template
     End Sub
 
     Private Sub UxClose_Click(sender As Object, e As RoutedEventArgs) Handles UxClose.Click
