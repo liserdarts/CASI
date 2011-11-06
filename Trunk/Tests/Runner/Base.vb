@@ -9,6 +9,7 @@ Public Class Base
     Inherits TestFramework.TestCase
 
     Protected WithEvents Batch As ScriptBatch
+    Protected WithEvents Template As ScriptTemplate
     Protected WithEvents Finder As TestFinder
     Protected WithEvents Transaction As TestTransactionProvider
     Protected WithEvents Executor As TestExecutor
@@ -20,16 +21,19 @@ Public Class Base
     End Sub
 
     Protected Overridable Sub CreateRunner()
-        Batch = New ScriptBatch
-        
         Finder = New TestFinder
         Recorder = New TestRecoder
         Transaction = New TestTransactionProvider
         Executor = New TestExecutor
-        Batch.Template.Finder = Finder
-        Batch.Template.Recorder = Recorder
-        Batch.Template.Transaction = Transaction
-        Batch.Template.Executor = Executor
+
+        Template = New ScriptTemplate
+        Template.Finder = Finder
+        Template.Recorder = Recorder
+        Template.Transaction = Transaction
+        Template.Executor = Executor
+        
+        Batch = New ScriptBatch
+        Batch.AddTemplate(Template)
     End Sub
 
     Protected Overridable Sub Run()

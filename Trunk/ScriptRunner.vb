@@ -19,56 +19,22 @@ Public Class ScriptRunner
     ''' </summary>
     Public Sub Run(Template As ScriptTemplate)
         SyncLock Me
+            Dim Paths = GetScripts(Template)
+            Paths = FilterScripts(Template, Paths)
+
+            BeginTransaction(Template)
+
             Try
-                Initialize(Template)
-
-                Dim Paths = GetScripts(Template)
-                Paths = FilterScripts(Template, Paths)
-
-                BeginTransaction(Template)
-
-                Try
-                    RunScripts(Template, Paths)
-                    CommitTransaction(Template)
-                Catch Ex As Exception
-                    Template.Transaction.RollbackTransaction
-                    Throw
-                End Try
-
-                'The recorder may not be affected by the transaction, and can't guarantee will have it's changes reverted on an error
-                RecordScripts(Template, Paths)
-            Finally
-                Close(Template)
+                RunScripts(Template, Paths)
+                CommitTransaction(Template)
+            Catch Ex As Exception
+                Template.Transaction.RollbackTransaction
+                Throw
             End Try
+
+            'The recorder may not be affected by the transaction, and can't guarantee will have it's changes reverted on an error
+            RecordScripts(Template, Paths)
         End SyncLock
-    End Sub
-
-    ''' <summary>
-    ''' Initializes every <see cref="ScriptProperty" /> object.
-    ''' </summary>
-    Private Sub Initialize(Template As ScriptTemplate)
-        OnProgressChanged(ProgressChangedEventArgs.ProgressStages.Initialize, 0)
-
-        Dim Properties = Template.GetPropertyObjects
-        For I As Integer = 0 To Properties.Count - 1
-            OnProgressChanged(ProgressChangedEventArgs.ProgressStages.Initialize, I / Properties.Count)
-            Console.WriteLine("Initializing " & Properties(I).GetType.FullName)
-            Properties(I).Init
-        Next
-    End Sub
-
-    ''' <summary>
-    ''' Closes every <see cref="ScriptProperty" /> object.
-    ''' </summary>
-    Private Sub Close(Template As ScriptTemplate)
-        OnProgressChanged(ProgressChangedEventArgs.ProgressStages.Close, 0)
-
-        Dim Properties = Template.GetPropertyObjects
-        For I As Integer = 0 To Properties.Count - 1
-            OnProgressChanged(ProgressChangedEventArgs.ProgressStages.Close, I / Properties.Count)
-            Console.WriteLine("Closing " & Properties(I).GetType.FullName)
-            Properties(I).Close
-        Next
     End Sub
 
     ''' <summary>
@@ -123,7 +89,7 @@ Public Class ScriptRunner
             Dim Path = Paths(I)
             Console.WriteLine("Running script " & Path)
             Using Stream = Template.Finder.Open(Path)
-                Template.Executor.RunScript(Stream)
+                Template.Executor.RunScript(Path, Stream)
             End Using
         Next
     End Sub

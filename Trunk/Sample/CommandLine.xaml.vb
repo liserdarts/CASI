@@ -1,10 +1,10 @@
 ﻿Public Class CommandLine
 
-    Public Sub New(Template As ScriptTemplate)
+    Public Sub New(Batch As ScriptBatch)
         ' This call is required by the designer.
         InitializeComponent()
         
-        UxCommand.DataContext = Template
+        UxCommand.DataContext = Batch
     End Sub
 
     Private Sub UxClose_Click(sender As Object, e As RoutedEventArgs) Handles UxClose.Click

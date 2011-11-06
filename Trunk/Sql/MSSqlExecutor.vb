@@ -22,7 +22,7 @@ Public Class MSSqlExecutor
     ''' Executes the given script.
     ''' </summary>
     ''' <param name="Script">The script</param>
-    Public Overrides Sub RunScript(Script As IO.Stream)
+    Public Overrides Sub RunScript(Path As String, Script As IO.Stream)
         'ToDo: Allow GOs in the script
         Using Cmd = Connection.Connection.CreateCommand
             Dim Reader As New IO.StreamReader(Script)

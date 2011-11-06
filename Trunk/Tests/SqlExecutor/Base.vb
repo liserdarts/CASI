@@ -17,7 +17,7 @@ Public Class Base
         Executor = New Sql.SqlExecutor
         Executor.Connection = Connection
         
-        Executor.RunScript("Create Table NewTable (Col1 Int)")
+        Executor.RunScript("Test1.sql", "Create Table NewTable (Col1 Int)")
 
         Using Cmd = Connection.Connection.CreateCommand
             Cmd.CommandText = "Select * From NewTable"

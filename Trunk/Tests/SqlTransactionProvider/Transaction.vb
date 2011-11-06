@@ -20,10 +20,10 @@ Public MustInherit Class Base
         Transaction.Connection = Connection
         Executor.Connection = Connection
         
-        Executor.RunScript("Create Table NewTable (Col1 Int)")
+        Executor.RunScript("Test1.sql", "Create Table NewTable (Col1 Int)")
 
         Transaction.BeginTransaction
-        Executor.RunScript("Insert Into NewTable (Col1) Values (1)")
+        Executor.RunScript("Test2.sql", "Insert Into NewTable (Col1) Values (1)")
 
         EndTransaction
         

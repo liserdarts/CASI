@@ -14,16 +14,21 @@ Public Class ResourceFinder
     ''' Gets or sets the assembly to search.
     ''' </summary>
     ''' <value>The assembly to search.</value>
-    Public Property Assembly As Reflection.Assembly
+    Public Property Assembly() As Reflection.Assembly
 
     ''' <summary>
     ''' Gets or sets the file pattern.
     ''' </summary>
     ''' <value>The file pattern.</value>
-    Public Property FilePattern As String = ".*"
+    Public Property FilePattern() As String = ".*"
 
     Private Function GetReader() As Resources.ResourceReader
-        Return New Resources.ResourceReader(Assembly.GetManifestResourceStream(Assembly.GetName.Name & ".g.resources"))
+        If Assembly Is Nothing Then
+            Throw New InvalidOperationException("Assembly is not set.")
+        End If
+        Dim StreamName = Assembly.GetName.Name & ".g.resources"
+        Dim Stream = Assembly.GetManifestResourceStream(StreamName)
+        Return New Resources.ResourceReader(Stream)
     End Function
 
     ''' <summary>
@@ -51,7 +56,7 @@ Public Class ResourceFinder
     ''' <returns>
     ''' A <c>System.IO.Stream</c> of the contents of the script
     ''' </returns>
-    Public Overrides Function Open(ByVal Path As String) As IO.Stream
+    Public Overrides Function Open(Path As String) As IO.Stream
         For Each Script As DictionaryEntry In GetReader
             If Path = Script.Key Then
                 Return CType(Script.Value, IO.Stream)

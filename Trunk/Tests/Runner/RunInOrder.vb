@@ -16,7 +16,7 @@ Public Class RunInOrder
 
         AssertGreater(Executor.RunLog.Count, 1)
 
-        Dim Sorted = (Batch.Template.Sorter.Sort(Finder.Scripts))
+        Dim Sorted = (Template.Sorter.Sort(Finder.Scripts))
         Dim LastIndex As Integer
         For Each Script In Executor.RunLog
             If Executor.RunLog.Contains(Script) Then

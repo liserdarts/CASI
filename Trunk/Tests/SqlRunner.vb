@@ -7,9 +7,8 @@
 Public Class SqlRunner
     Inherits TestFramework.TestCase
     
-    'ToDo: Create a TestSqlExecutor that uses a SQL server CE database
-
     Protected WithEvents Batch As ScriptBatch
+    Protected WithEvents Template As ScriptTemplate
     Protected WithEvents Finder As CASI.FileFinder
     Protected WithEvents Transaction As Sql.SqlTransactionProvider
     Protected WithEvents Executor As Executor
@@ -17,7 +16,6 @@ Public Class SqlRunner
     
     Public Overrides Sub Test()
         CreateRunner
-        SetPropertyObjects
         Run
     End Sub
 
@@ -29,14 +27,14 @@ Public Class SqlRunner
         Executor = New TestSqlExecutor
         Recorder = New Sql.SqlRecorder
 
-        Batch.Template.Finder = Finder
-        Batch.Template.Recorder = Recorder
-        Batch.Template.Transaction = Transaction
-        Batch.Template.Executor = Executor
-    End Sub
+        Template = New ScriptTemplate
+        Template.Finder = Finder
+        Template.Recorder = Recorder
+        Template.Transaction = Transaction
+        Template.Executor = Executor
 
-    Protected Overridable Sub SetPropertyObjects()
-        Batch.Template.GetPropertyObjects
+        Batch = New ScriptBatch
+        Batch.AddTemplate(Template)
     End Sub
 
     Protected Overridable Sub Run()

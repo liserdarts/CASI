@@ -6,19 +6,19 @@
 
 Public Class Progress
 
-    Dim WithEvents LRunner As ScriptRunner
-    Public Property Runner() As ScriptRunner
+    Dim WithEvents LBatch As ScriptBatch
+    Public Property Batch() As ScriptBatch
         Get
-            Return LRunner
+            Return LBatch
         End Get
         Set
-            LRunner = Value
+            LBatch = Value
         End Set
     End Property
 
-    Private Sub Runner_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles LRunner.ProgressChanged
+    Private Sub Batch_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles LBatch.ProgressChanged
         If Not Dispatcher.CheckAccess Then
-            Dispatcher.BeginInvoke(New EventHandler(Of ProgressChangedEventArgs)(AddressOf Runner_ProgressChanged), sender, e)
+            Dispatcher.BeginInvoke(New EventHandler(Of ProgressChangedEventArgs)(AddressOf Batch_ProgressChanged), sender, e)
             Return
         End If
 

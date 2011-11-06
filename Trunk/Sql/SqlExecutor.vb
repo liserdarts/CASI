@@ -22,7 +22,7 @@ Public Class SqlExecutor
     ''' Executes the given script.
     ''' </summary>
     ''' <param name="Script">The script</param>
-    Public Overrides Sub RunScript(Script As IO.Stream)
+    Public Overrides Sub RunScript(Path As String, Script As IO.Stream)
         Using Cmd = Connection.Connection.CreateCommand
             Dim Reader As New IO.StreamReader(Script)
             Cmd.CommandText = Reader.ReadToEnd

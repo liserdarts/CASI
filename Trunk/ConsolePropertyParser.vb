@@ -9,14 +9,14 @@
 ''' </summary>
 Public Class ConsolePropertyParser
     
-    Dim WithEvents Template As ScriptTemplate
+    Dim WithEvents Batch As ScriptBatch
 
     ''' <summary>
     ''' Initializes a new instance of the <see cref="ConsolePropertyParser" /> class.
     ''' </summary>
-    ''' <param name="Template">The <see cref="ScriptTemplate" /> to use.</param>
-    Public Sub New(Template As ScriptTemplate)
-        Me.Template = Template
+    ''' <param name="Batch">The <see cref="ScriptBatch" /> to use.</param>
+    Public Sub New(Batch As ScriptBatch)
+        Me.Batch = Batch
     End Sub
 
     ''' <summary>
@@ -31,7 +31,7 @@ Public Class ConsolePropertyParser
 
         CommandLine.Parse(Args)
         
-        For Each Obj In Template.GetPropertyObjects
+        For Each Obj In Batch.GetPropertyObjects
             For Each Prop In Obj.GetType.GetProperties
                 If Prop.CanWrite And Prop.GetIndexParameters.Length = 0 Then
                     PropertySet = PropertySet Or SetProperty(CommandLine, Prop, Obj)
@@ -69,7 +69,7 @@ Public Class ConsolePropertyParser
     Public Function Build() As String
         Dim Builder As New CommandLineParser
         
-        For Each Obj In Template.GetPropertyObjects
+        For Each Obj In Batch.GetPropertyObjects
             For Each Prop In Obj.GetType.GetProperties
                 If Prop.CanRead And Prop.CanWrite And Prop.GetIndexParameters.Length = 0 And Prop.PropertyType Is GetType(String) Then
                     Builder.Add(String.Format("{0}.{1}", Prop.DeclaringType.Name, Prop.Name), Prop.GetValue(Obj, Nothing))
