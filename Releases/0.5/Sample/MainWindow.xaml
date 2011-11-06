@@ -1,0 +1,40 @@
+﻿<Window x:Class="MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="clr-namespace:CASI.UI;assembly=CASI.UI"
+    Title="CASI Sample" Icon="/CASI.Sample;component/CASI.ico"
+    MinWidth="400" SizeToContent="WidthAndHeight">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ui:WidthConverter x:Key="WidthConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Width="{Binding Width, Converter={StaticResource WidthConverter}, ConverterParameter=20, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ui:GenericDesigner x:Name="UxPropertyObjects" Grid.Row="0" />
+
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="UxBuildCommandLine" Padding="4" Margin="4">Command Line</Button>
+                <Button x:Name="UXRun" IsDefault="True" Padding="4" Margin="4">Run</Button>
+            </StackPanel>
+            <Expander x:Name="UxDebuggerExpander" Header="Debug" IsExpanded="False">
+                <ScrollViewer MaxHeight="400" >
+                    <ui:Debugger x:Name="UxDebugger" />
+                </ScrollViewer>
+            </Expander>
+        </StackPanel>
+        
+        <StackPanel x:Name="UxResults" Grid.Row="2">
+            <ui:Progress x:Name="UxProgress" Height="20" />
+            <TextBox x:Name="UxLog" MaxHeight="400" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto" />
+        </StackPanel>
+    </Grid>
+</Window>

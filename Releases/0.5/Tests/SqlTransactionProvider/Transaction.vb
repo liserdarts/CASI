@@ -1,0 +1,48 @@
+﻿'Copyright (c) 2011, Nicholas Avery
+'Licensed under the Microsoft Public License (Ms-PL)
+'you may not use this file except in compliance with the License.
+'You may obtain a copy of the license at 
+'http://casi.codeplex.com/license
+
+Namespace SqlTransactionProvider
+Public MustInherit Class Base
+    Inherits TestFramework.TestCase
+
+    Protected Connection As TestSqlConnection
+    Protected Transaction As Sql.SqlTransactionProvider
+    Protected Executor As Sql.SqlExecutor
+
+    Public Overrides Sub Test()
+        GetConnection
+        
+        Transaction = New Sql.SqlTransactionProvider
+        Executor = New Sql.SqlExecutor
+        Transaction.Connection = Connection
+        Executor.Connection = Connection
+        
+        Executor.RunScript("Test1.sql", "Create Table NewTable (Col1 Int)")
+
+        Transaction.BeginTransaction
+        Executor.RunScript("Test2.sql", "Insert Into NewTable (Col1) Values (1)")
+
+        EndTransaction
+        
+        Dim Count As Integer
+        Using Cmd = Connection.Connection.CreateCommand
+            Cmd.CommandText = "Select Count(*) From NewTable"
+            Count = Cmd.ExecuteScalar
+        End Using
+
+        ValidateRows(Count)
+    End Sub
+    
+    Protected Overridable Sub GetConnection()
+        Connection = GetOverride(Of Overriders.SqlDatabaseOverride).GetConnection
+        Connection.Init
+    End Sub
+
+    Protected MustOverride Sub EndTransaction()
+    Protected MustOverride Sub ValidateRows(RowCount As Integer)
+
+End Class
+End Namespace

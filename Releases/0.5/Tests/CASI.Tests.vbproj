@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{CEC03019-1222-4516-8E9E-770EDEA1ED30}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CASI.Tests</RootNamespace>
+    <AssemblyName>CASI.Tests</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>CASI.Tests.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42032,42036</NoWarn>
+    <WarningsAsErrors>42020,42021,42022</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>CASI.Tests.xml</DocumentationFile>
+    <NoWarn>41999,42016,42017,42018,42019,42032,42036</NoWarn>
+    <WarningsAsErrors>42020,42021,42022</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="TestFramework">
+      <HintPath>\\beta\builds\TestFramework\Builds\Release\TestFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Console\BuildCommands.vb" />
+    <Compile Include="Console\BuildProperties.vb" />
+    <Compile Include="Console\ParseCommands.vb" />
+    <Compile Include="Console\ParseProperties.vb" />
+    <Compile Include="FileFinder\Base.vb" />
+    <Compile Include="FileFinder\OnlySqlFiles.vb" />
+    <Compile Include="FileFinder\RelativePath.vb" />
+    <Compile Include="FolderSorter\Base.vb" />
+    <Compile Include="SqlRecorder\RecordScriptFirst.vb" />
+    <Compile Include="SqlRunner.vb" />
+    <Compile Include="TestScriptProperty.vb" />
+    <Compile Include="TestSqlConnection.vb" />
+    <Compile Include="Overriders\FileOverride.vb" />
+    <Compile Include="Overriders\SqlDatabaseOverride.vb" />
+    <Compile Include="ResourceFinder\Base.vb" />
+    <Compile Include="ResourceFinder\Filter.vb" />
+    <Compile Include="Runner\Base.vb" />
+    <Compile Include="Runner\ExecutionException.vb" />
+    <Compile Include="Runner\OnlyRunOnce.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Runner\RunInOrder.vb" />
+    <Compile Include="SqlExecutor\Base.vb" />
+    <Compile Include="SqlRecorder\Base.vb" />
+    <Compile Include="SqlRecorder\RunTwice.vb" />
+    <Compile Include="SqlTransactionProvider\CommitTransaction.vb" />
+    <Compile Include="SqlTransactionProvider\RollbackTransaction.vb" />
+    <Compile Include="SqlTransactionProvider\Transaction.vb" />
+    <Compile Include="TestExecutor.vb" />
+    <Compile Include="TestFinder.vb" />
+    <Compile Include="TestRecoder.vb" />
+    <Compile Include="Runner\Transaction.vb" />
+    <Compile Include="TestSqlExecutor.vb" />
+    <Compile Include="TestTransactionProvider.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CASI.vbproj">
+      <Project>{E18A4236-5BFC-4033-A62C-BBADF7BBDD8E}</Project>
+      <Name>CASI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UI\CASI.UI.vbproj">
+      <Project>{D2E8F793-FEAC-4CD8-A6CA-AE669EA791E9}</Project>
+      <Name>CASI.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Overriders\Files\SampleNotes.txt" />
+    <EmbeddedResource Include="Overriders\Files\SampleScript1.sql" />
+    <EmbeddedResource Include="Overriders\Files\SampleScript2.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Overriders\Resources\SampleScript2.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Overriders\Resources\SampleScript1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Overriders\Resources\SampleNotes.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
