@@ -12,27 +12,30 @@ Public Class ParseProperties
     Inherits TestFramework.TestCase
     
     Protected Executor As TestExecutor
-    Protected Template As ScriptTemplate
+    Protected Batch As ScriptBatch
 
     Public Overrides Sub Test()
-        CreateTemplate
+        CreateBatch
         Parse("-TestScriptProperty.TestProperty=TestValue", "TestValue")
     End Sub
 
-    Protected Overridable Sub CreateTemplate()
+    Protected Overridable Sub CreateBatch()
         Executor = New TestExecutor
         
+        Dim Template As New ScriptTemplate
         Template = New ScriptTemplate
         Template.Executor = Executor
         Template.Finder = New TestFinder
         Template.Recorder = New TestRecoder
         Template.Transaction = New TestTransactionProvider
 
-        Template.GetPropertyObjects
+        Batch = New ScriptBatch
+        Batch .AddTemplate(Template)
+        Batch.GetPropertyObjects
     End Sub
 
     Protected Sub Parse(Args As String, Value As String)
-        Dim Parser As New ConsolePropertyParser(Template)
+        Dim Parser As New ConsolePropertyParser(Batch)
         AssertIsFalse(Parser.Parse(New String(){}))
 
         AssertIsTrue(Parser.Parse(Args.Split(" ")))

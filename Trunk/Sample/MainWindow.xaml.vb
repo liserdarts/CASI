@@ -16,8 +16,8 @@ Class MainWindow
     Private Sub MainWindow_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
         Console.SetOut(New UI.TextBoxWriter(UxLog))
 
-        UxPropertyObjects.ItemsSource = Batch.Template.GetPropertyObjects
-        UxProgress.Runner = Batch.Runner
+        UxPropertyObjects.ItemsSource = Batch.GetPropertyObjects
+        UxProgress.Batch = Batch
     End Sub
 
     Private Sub UXRun_Click(sender As Object, e As RoutedEventArgs) Handles UXRun.Click
@@ -51,7 +51,7 @@ Class MainWindow
     End Sub
 
     Private Sub UxBuildCommandLine_Click(sender As Object, e As RoutedEventArgs) Handles UxBuildCommandLine.Click
-        Dim Command As New CommandLine(Batch.Template)
+        Dim Command As New CommandLine(Batch)
         Command.ShowDialog
     End Sub
 

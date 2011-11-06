@@ -10,11 +10,11 @@ Public Class TestExecutor
     Event RunScriptEvent As EventHandler
     
     <ScriptPropertyAttribute("FD46628D-AD89-43B0-AF3B-EB0DCA8B1488")> _
-    Public Property TestProperty As TestScriptProperty
+    Public Property TestProperty() As TestScriptProperty
     
     Public RunLog As New List(Of String)
 
-    Public Overrides Sub RunScript(Script As IO.Stream)
+    Public Overrides Sub RunScript(Path As String, Script As IO.Stream)
         RaiseEvent RunScriptEvent(Me, EventArgs.Empty)
 
         Dim Reader As New IO.StreamReader(Script)

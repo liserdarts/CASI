@@ -14,14 +14,14 @@ Public MustInherit Class Executor
     ''' </summary>
     ''' <param name="Script">The script</param>
     ''' <remarks>Converts the String into an <c>System.IO.MemoryStream</c> using UTF8 encoding</remarks>
-    Public Sub RunScript(Script As String)
+    Public Sub RunScript(Path As String,Script As String)
         Dim Stream As New IO.MemoryStream(Text.Encoding.UTF8.GetBytes(Script))
-        RunScript(Stream)
+        RunScript(Path, Stream)
     End Sub
 
     ''' <summary>
     ''' When overridden in a derived class, executes the given script.
     ''' </summary>
     ''' <param name="Script">The script</param>
-    Public MustOverride Sub RunScript(Script As IO.Stream)
+    Public MustOverride Sub RunScript(Path As String, Script As IO.Stream)
 End Class

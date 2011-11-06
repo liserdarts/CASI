@@ -51,22 +51,24 @@ Public Class ScriptDebugger
     Dim ScriptTemplate As ScriptTemplate
 
     Private Sub UxRecord_Click(sender As Object, e As RoutedEventArgs) Handles UxRecord.Click
-        ScriptTemplate = Batch.Template.Clone
+        Throw New NotImplementedException
+        'ScriptTemplate = Batch.Template.Clone
 
-        ScriptTemplate.Finder = New DummyFinder(DataContext, Batch.Template.Finder)
-        ScriptTemplate.Recorder = New DummyRecorder(Batch.Template.Recorder)
-        ScriptTemplate.Executor = New DummyExecutor
+        'ScriptTemplate.Finder = New DummyFinder(DataContext, Batch.Template.Finder)
+        'ScriptTemplate.Recorder = New DummyRecorder(Batch.Template.Recorder)
+        'ScriptTemplate.Executor = New DummyExecutor
         
-        Run
+        'Run
     End Sub
 
     Private Sub UxRun_Click(sender As Object, e As RoutedEventArgs) Handles UxRun.Click
-        ScriptTemplate = Batch.Template.Clone
+        Throw New NotImplementedException
+        'ScriptTemplate = Batch.Template.Clone
 
-        ScriptTemplate.Finder = New DummyFinder(DataContext, Batch.Template.Finder)
-        ScriptTemplate.Recorder = New DummyRecorder(Batch.Template.Recorder)
+        'ScriptTemplate.Finder = New DummyFinder(DataContext, Batch.Template.Finder)
+        'ScriptTemplate.Recorder = New DummyRecorder(Batch.Template.Recorder)
         
-        Run
+        'Run
     End Sub
 
     Private Sub Run()
@@ -135,7 +137,7 @@ Public Class ScriptDebugger
     Private Class DummyExecutor
         Inherits Executor
         
-        Public Overrides Overloads Sub RunScript(Script As IO.Stream)
+        Public Overrides Overloads Sub RunScript(Path As String, Script As IO.Stream)
             Console.WriteLine("Not Executing")
             'Do nothing
         End Sub

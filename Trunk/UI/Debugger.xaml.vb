@@ -22,9 +22,15 @@ Public Class Debugger
             Return
         End If
 
-        Dim Scripts = Batch.Template.Finder.GetAllScripts
-        Scripts = Batch.Template.Sorter.Sort(Scripts)
-        UxScripts.ItemsSource = Scripts.Reverse
+        Dim Scripts As New List(Of String)
+        For Each Tem In Batch.Templates
+            Dim TemScripts = Tem.Finder.GetAllScripts
+            TemScripts = Tem.Sorter.Sort(TemScripts)
+            Scripts.AddRange(TemScripts)
+        Next
+
+        Scripts.Reverse
+        UxScripts.ItemsSource = Scripts
     End Sub
 
 End Class

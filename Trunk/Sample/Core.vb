@@ -13,7 +13,7 @@ Public Class Core
     Public Shared Sub Main(Args() As String)
         CreateBatch
 
-        Dim CommandRunner As New ConsolePropertyParser(Batch.Template)
+        Dim CommandRunner As New ConsolePropertyParser(Batch)
         If CommandRunner.Parse(Args) Then 'Run the scripts now
             Batch.Run
         Else 'Display the UI
@@ -32,11 +32,14 @@ Public Class Core
         Finder.Assembly = GetType(Core).Assembly
         Finder.FilePattern = ".*sql$"
         
+        Dim Template As New ScriptTemplate
+        Template.Finder = Finder
+        Template.Recorder = Recorder
+        Template.Executor = Executor
+        Template.Transaction = Transaction
+
         Batch = New Scriptbatch
-        Batch.Template.Finder = Finder
-        Batch.Template.Recorder = Recorder
-        Batch.Template.Executor = Executor
-        Batch.Template.Transaction = Transaction
+        Batch.AddTemplate(Template)
     End Sub
 
     Private Shared Sub Runner_ProgressChanged(sender As Object, e As ProgressChangedEventArgs) Handles Batch.ProgressChanged
