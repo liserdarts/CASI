@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="MSSqlConnectionEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    d:DesignHeight="100" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="Server" VerticalAlignment="Center" />
+        <TextBox x:Name="UxServer" Grid.Row="0" Grid.Column="1" Margin="5" />
+
+        <TextBlock Grid.Row="1" Text="Database" VerticalAlignment="Center" />
+        <TextBox x:Name="UxDatabase" Grid.Row="1" Grid.Column="1" Margin="5" />
+
+        <TextBlock Grid.Row="2" Text="Username" VerticalAlignment="Center" />
+        <TextBox x:Name="UxUsername" Grid.Row="2" Grid.Column="1" Margin="5" />
+
+        <TextBlock Grid.Row="3" Text="Password" VerticalAlignment="Center" />
+        <PasswordBox x:Name="UxPassword" Grid.Row="3" Grid.Column="1" Margin="5" />
+    </Grid>
+</UserControl>
