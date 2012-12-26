@@ -1,4 +1,4 @@
-﻿'Copyright (c) 2011, Nicholas Avery
+﻿'Copyright (c) 2011-2012, Nicholas Avery
 'Licensed under the Microsoft Public License (Ms-PL)
 'you may not use this file except in compliance with the License.
 'You may obtain a copy of the license at 
@@ -35,6 +35,11 @@ Public Class MSSqlConnection
     ''' </summary>
     ''' <value>The password.</value>
     Public Property Password As String
+    ''' <summary>
+    ''' Gets or sets the timeout.
+    ''' </summary>
+    ''' <value>The timeout.</value>
+    Public Property Timeout As TimeSpan = TimeSpan.FromSeconds(60)
     
     Public Overrides Sub Init()
         CreateDatabase
@@ -62,6 +67,7 @@ Public Class MSSqlConnection
         ConnectionString.Add("pwd", Password)
         ConnectionString.Add("data source", Server)
         ConnectionString.Add("initial catalog", DatabaseName)
+        ConnectionString.Add("Connect Timeout", Math.Round(Timeout.TotalSeconds))
         
         Dim Connection As New SqlClient.SqlConnection(ConnectionString.ToString)
         Connection.Open
