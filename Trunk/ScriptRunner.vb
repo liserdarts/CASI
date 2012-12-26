@@ -28,7 +28,11 @@ Public Class ScriptRunner
                 RunScripts(Template, Paths)
                 CommitTransaction(Template)
             Catch Ex As Exception
-                Template.Transaction.RollbackTransaction
+                Try
+                    Template.Transaction.RollbackTransaction
+                Catch Ex2 As Exception
+                    Console.WriteLine(Ex2.ToString)
+                End Try
                 Throw
             End Try
 
