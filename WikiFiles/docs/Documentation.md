@@ -1,0 +1,75 @@
+# Before you start
+## Development guidelines
+If you're going to be using CASI there are a few things things you should consider and be aware of. This should be something your entire team is involved with and agrees to. It will require cooperation from everybody.
+### Rules
+* Never change a script once it is in source control
+	* Once a script is in source control anybody can get it and run it. That script will never be run on any of those databases again. If you change it, those changes will not make it to those databases. If you need to undo a change in a script, write another script to do it (as long as this doesn't cause some data loss of course). There are exceptions to this rule, and as long as you understand the potential for problems you should be able to recognize them when you find them. So I shouldn't have to list them all here. But here are some examples.
+		* You are absolutely sure nobody has or will run the script without these changes. If you are working on a private branch for example.
+		* There is a bug in the script that results in an error. If it doesn't work, then nobody has run it. So it's ok to change.
+* Never rename or move a script. It will be seen as a new script and be run again. I'm not aware of any exceptions to this rule.
+### Suggestions
+* Always write scripts right away and check in with code changes that need it. If you check in code changes without the required scripts it may break the development environment of others on your team. Be courteous.
+* Create a new folder each month for new scripts. If you put scripts into 1 folder it will get to be quite big. Because you can never move scripts they will be stuck there forever. I recommend using the format {"[Year](Year)[Month](Month)"}. For example January 2011 would be 201101. This will make them sort correctly and be easy to search.
+* Each developer should have there own database. This makes it a lot easier to keep off each others toes.
+* Create a new database for every branch of code that you work on (If you make any database changes in that branch). The goal here is to treat your database just like code.
+
+
+## Some questions and objections you might have
+* Won't it take a long time to run all those scripts?
+	* I don't know your database, but the answer is probably no. First of all if you're upgrading a database only the new scripts will be run, but even creating a new database and running every script will likely be much faster then you think. I work on a project that has 395 scripts working on 63 tables built up and a new database can be created in a few seconds. It took 4 years to get that many scripts.
+* CASI doesn't fit my situation
+	* I've purposely made CASI very flexible. More flexible then this text gives it credit for. If there's something missing that you need, contact me and I'll see what I can do. I want to make sure CASI works for everybody.
+* I want to be able to rename and move scripts
+	* Sorry. Seriously though, if you really need this contact me.
+* I don't want to write all those scripts
+	* I really recommend that you do. You probably already have a database. There are tools out there that will create all the scripts for you to start with. Writing new scripts for future changes is not as big of a task as you might think. If you don't have a database change plan that can be automated, you probably don't know what you're missing. Just give it a try.
+
+# Setting Up
+## Setting up a script runner
+A script runner is the core of the process. It needs 5 replaceable parts that do the actual work. The script runner is responsible for putting them together. The 5 pieces are a Finder, a Recorder, a sorter, a TransactionProvider, and a Executor.
+* Finder
+	* The Finder is responsible for returning a list of all the scripts that are available to run. It should return the list in the order the scripts are meant to be run. Later the finder will be responsible for opening the scripts and return a Stream.
+* Recorder
+	* The Recorder is responsible for looking up if a script has been run before, based on its path. Later when the scripts are actually run it will be responsible for recording that.
+* Sorter
+	* Sorts the scripts into the order they are meant to run. Usually this is just alphabetically.
+* TransactionProvider
+	* The TransactionProvider is responsible for making sure all the scripts are executed in some form of a transaction. There are different strategies for accomplishing this but in the end it must be able to commit and rollback the transaction.
+* Executor
+	* The executor is responsible for actually running the scripts
+
+## Examples
+### FileFinder
+The CASI.FileFinder class will recursively search a given base path. The FilePattern can be changed to find different files.
+### ResourceFinder
+The CASI.ResourceFinder class will look through the resources of a given assembly. The FilePattern can be changed to find different files.
+### FolderSorter
+The CASI.FolderSorter class sorts that paths alphabetically by comparing each folder in the paths separately. This class is used by the CASI.ScriptRunner class by default.
+Consider this list of scripts
+{{
+1.2\Somthing.sql
+1.2.1\Something.sql }}
+A straight alphabetical sort would put everything in the 1.2.1 folder before the 1.2 folder because "." comes before "\". This is probably not what was intended. The CASI.FolderSorter class splits on the backslash (or forward slash) and will compare just "1.2" to "1.2.1". It will determine "1.2" should be before "1.2.1" and not even look at the rest of the path. If the folders did match it would continue comparing the rest of the path in the same way.
+### SqlRecorder
+The CASI.Sql.SqlRecorder class records what scripts have been run using a table in an SQL database. If the table does not exist it will be created. The name of the table can be changed with the TableName property.
+### SqlTransactionProvider
+The CASI.Sql.SqlTransactionProvider class uses a database transaction to commit or rollback changes made by the scripts.
+### SqlExecutor
+The CASI.Sql.SqlExecutor class executes the scripts with a given System.Data.Common.DbConnection.
+
+## Including Script Files
+*There is more then one way to include script files. Each has its own advantages and disadvantages. The more straight forward way is to include all the script files alongside the exe and other assemblies. This is simple to do and can make debugging easy if there is a problem with any of the scripts. An alternative method is what's used by the sample project. Instead the scripts are included as resources of the CASI.Sample.exe. This makes debugging more difficult because you can't easily read the scripts and you can't change them without compiling again. However it allows the scripts to be more portable. If you use this method it might be a good idea to include an option to save the scripts to a folder for debugging.
+
+### Scripts As A Resource
+Script files in the CASI.Sample project are compiled as a resource into the exe. This removes the need to copy all the script files with the exe were ever you want to run it. For example if the scripts were part of a unit test project, whatever test framework you are using will probably not copy the script files for you and as a result your code will not be able to find them. Additionally any other project that wants to reference your assembly will not have to worry about copying the scripts because they will already be included. This makes it easy to create a database anywhere at anytime. Software can easily create it's own database the first time it's run for example.
+
+### How It Works
+Normally to add a file as a resource you have to change its build action using the properties. This would work but is not necessary because of a custom action in the project file.
+
+{{	<Target Name="BeforeBuild">
+	  <ItemGroup>
+		<Resource Include="@(Content)" />
+	  </ItemGroup>
+	</Target>}}
+
+This can be added to any project. It will make sure that every file included as content in the project will be added as a resource to the exe or dll. Files that are not part of the project but are in the project's folder or a sub folder will not be included.
